@@ -32,11 +32,15 @@ dotnet build .\v2rayN\v2rayN.sln -c Debug
 dotnet run --project .\v2rayN\v2rayN.Desktop\v2rayN.Desktop.csproj
 ```
 
-## Current Known Issue
+The repository includes `global.json` to pin local and CI builds to .NET SDK `8.0.422`.
 
-This machine currently has .NET runtimes but no .NET SDK installed, so `dotnet build` cannot run here yet. Install the .NET 8 SDK before building.
+## Current Compatibility Notes
 
 TUIC imports default `allowInsecure` to enabled when the share link does not specify it. Runtime sing-box config generation also treats existing TUIC records with empty `allowInsecure` as enabled. This keeps compatibility with common TUIC nodes that use self-signed or otherwise untrusted certificates.
+
+FluxGate starts sing-box with `ENABLE_DEPRECATED_LEGACY_DNS_SERVERS=true` for compatibility with the v2rayN 7.10.3 DNS configuration format when a newer sing-box core is present.
+
+Release packaging is based on the official `2dust/v2rayN` `7.10.3` release assets, then overlays the FluxGate desktop build into the same application root.
 
 ## Branding
 

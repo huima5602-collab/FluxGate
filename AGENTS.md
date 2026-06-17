@@ -64,5 +64,6 @@ dotnet build .\v2rayN\v2rayN.sln -c Debug
 
 ## 已知问题
 
-- 当前机器只有 .NET Runtime，没有 .NET SDK，`dotnet build` 会失败。需要安装 .NET 8 SDK 后再构建。
+- 当前仓库通过 `global.json` 固定使用 .NET SDK `8.0.422` 构建。
+- sing-box 启动时会注入 `ENABLE_DEPRECATED_LEGACY_DNS_SERVERS=true`，用于兼容 v2rayN 7.10.3 的 DNS 配置格式。
 - 当前只完成首轮品牌替换，完整 UI 重构尚未开始。
