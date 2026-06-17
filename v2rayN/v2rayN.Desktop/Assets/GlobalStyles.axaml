@@ -7,10 +7,101 @@
 
     <Style Selector="DataGrid">
         <Setter Property="RowHeight" Value="24" />
+        <Setter Property="Background" Value="{DynamicResource FluxPanelBg}" />
+        <Setter Property="Foreground" Value="{DynamicResource FluxText}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource FluxBorder}" />
     </Style>
 
     <Style Selector="PathIcon">
         <Setter Property="Width" Value="16" />
         <Setter Property="Height" Value="16" />
+    </Style>
+
+    <Style Selector="TextBlock.FluxTitle">
+        <Setter Property="Foreground" Value="{DynamicResource FluxText}" />
+        <Setter Property="FontSize" Value="21" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+    </Style>
+
+    <Style Selector="TextBlock.FluxSubtle">
+        <Setter Property="Foreground" Value="{DynamicResource FluxTextMuted}" />
+        <Setter Property="FontSize" Value="12" />
+    </Style>
+
+    <Style Selector="TextBlock.FluxSectionTitle">
+        <Setter Property="Foreground" Value="{DynamicResource FluxCyan}" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+    </Style>
+
+    <Style Selector="TextBlock.FluxHeroTitle">
+        <Setter Property="Foreground" Value="{DynamicResource FluxText}" />
+        <Setter Property="FontSize" Value="28" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+    </Style>
+
+    <Style Selector="TextBlock.FluxHeroText">
+        <Setter Property="Foreground" Value="{DynamicResource FluxTextMuted}" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+    </Style>
+
+    <Style Selector="TextBlock.FluxNavHint">
+        <Setter Property="Foreground" Value="{DynamicResource FluxText}" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Padding" Value="12,10" />
+        <Setter Property="Background" Value="{DynamicResource FluxPanelBgAlt}" />
+    </Style>
+
+    <Style Selector="Border.FluxPanel">
+        <Setter Property="Background" Value="{DynamicResource FluxPanelBg}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource FluxBorder}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="14" />
+        <Setter Property="Padding" Value="18" />
+    </Style>
+
+    <Style Selector="Border.FluxPill">
+        <Setter Property="Background" Value="#1A2A45" />
+        <Setter Property="BorderBrush" Value="{DynamicResource FluxBorder}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="14" />
+        <Setter Property="Padding" Value="12,7" />
+    </Style>
+
+    <Style Selector="Border.FluxPill.Success">
+        <Setter Property="BorderBrush" Value="{DynamicResource FluxGreen}" />
+    </Style>
+
+    <Style Selector="Border.FluxPill.Cyan">
+        <Setter Property="BorderBrush" Value="{DynamicResource FluxCyan}" />
+    </Style>
+
+    <Style Selector="Border.FluxStatusDot">
+        <Setter Property="Width" Value="9" />
+        <Setter Property="Height" Value="9" />
+        <Setter Property="CornerRadius" Value="9" />
+        <Setter Property="Background" Value="{DynamicResource FluxGreen}" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+
+    <Style Selector="Menu.FluxMenu">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{DynamicResource FluxText}" />
+    </Style>
+
+    <Style Selector="TabControl.FluxWorkspaceTabs">
+        <Setter Property="Background" Value="Transparent" />
+    </Style>
+
+    <Style Selector="TabControl.FluxWorkspaceTabs TabItem">
+        <Setter Property="Foreground" Value="{DynamicResource FluxTextMuted}" />
+        <Setter Property="Padding" Value="12,10" />
+        <Setter Property="Margin" Value="0,2" />
+    </Style>
+
+    <Style Selector="TabControl.FluxWorkspaceTabs TabItem:selected">
+        <Setter Property="Foreground" Value="{DynamicResource FluxText}" />
+        <Setter Property="Background" Value="{DynamicResource FluxAccentGradient}" />
     </Style>
 </Styles>

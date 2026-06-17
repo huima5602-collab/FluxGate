@@ -17,4 +17,25 @@
     <Thickness x:Key="MarginLr8">8,0</Thickness>
     <Thickness x:Key="MarginTb8">0,8</Thickness>
     <Thickness x:Key="Margin8">8</Thickness>
+
+    <SolidColorBrush x:Key="FluxBg" Color="#08111F" />
+    <SolidColorBrush x:Key="FluxTopBar" Color="#101B2C" />
+    <SolidColorBrush x:Key="FluxSidebar" Color="#0D1728" />
+    <SolidColorBrush x:Key="FluxPanelBg" Color="#111D31" />
+    <SolidColorBrush x:Key="FluxPanelBgAlt" Color="#16243B" />
+    <SolidColorBrush x:Key="FluxBorder" Color="#263C5F" />
+    <SolidColorBrush x:Key="FluxText" Color="#F4F8FF" />
+    <SolidColorBrush x:Key="FluxTextMuted" Color="#96A8C8" />
+    <SolidColorBrush x:Key="FluxBlue" Color="#2F8CFF" />
+    <SolidColorBrush x:Key="FluxCyan" Color="#18E0FF" />
+    <SolidColorBrush x:Key="FluxGreen" Color="#31F59A" />
+    <SolidColorBrush x:Key="FluxPurple" Color="#A855F7" />
+    <SolidColorBrush x:Key="FluxPink" Color="#FF4FD8" />
+    <SolidColorBrush x:Key="FluxOrange" Color="#FFB020" />
+    <SolidColorBrush x:Key="FluxDanger" Color="#FF4D6D" />
+    <LinearGradientBrush x:Key="FluxAccentGradient" StartPoint="0%,0%" EndPoint="100%,100%">
+        <GradientStop Offset="0" Color="#2F8CFF" />
+        <GradientStop Offset="0.5" Color="#18E0FF" />
+        <GradientStop Offset="1" Color="#A855F7" />
+    </LinearGradientBrush>
 </ResourceDictionary>

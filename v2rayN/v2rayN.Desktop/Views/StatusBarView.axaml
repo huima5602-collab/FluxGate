@@ -10,73 +10,119 @@
     d:DesignWidth="800"
     x:DataType="vms:StatusBarViewModel"
     mc:Ignorable="d">
-    <Grid>
-        <DockPanel Margin="{StaticResource Margin8}">
-            <StackPanel
-                VerticalAlignment="Center"
-                Margin="{StaticResource MarginLr8}"
-                DockPanel.Dock="Right">
-                <TextBlock x:Name="txtSpeedProxyDisplay" HorizontalAlignment="Right" />
-                <Border Margin="1" />
-                <TextBlock x:Name="txtSpeedDirectDisplay" HorizontalAlignment="Right" />
-            </StackPanel>
+    <Grid RowDefinitions="Auto,Auto,*">
+        <Grid ColumnDefinitions="2*,*,*">
+            <Border Classes="FluxPanel">
+                <StackPanel Spacing="10">
+                    <TextBlock Classes="FluxSectionTitle" Text="当前节点" />
+                    <TextBlock
+                        x:Name="txtRunningServerDisplay"
+                        Classes="FluxHeroTitle"
+                        FontSize="20"
+                        TextWrapping="Wrap" />
+                    <TextBlock
+                        x:Name="txtRunningInfoDisplay"
+                        Classes="FluxSubtle"
+                        TextWrapping="Wrap" />
+                </StackPanel>
+            </Border>
 
-            <StackPanel
-                VerticalAlignment="Center"
-                Margin="{StaticResource MarginLr8}"
-                DockPanel.Dock="Left">
-                <TextBlock x:Name="txtInboundDisplay" />
-                <Border Margin="1" />
-                <TextBlock x:Name="txtInboundLanDisplay" />
-            </StackPanel>
+            <Border
+                Grid.Column="1"
+                Margin="14,0,0,0"
+                Classes="FluxPanel">
+                <StackPanel Spacing="10">
+                    <TextBlock Classes="FluxSectionTitle" Text="实时代理" />
+                    <TextBlock
+                        x:Name="txtSpeedProxyDisplay"
+                        Foreground="{DynamicResource FluxGreen}"
+                        FontSize="18"
+                        FontWeight="SemiBold" />
+                    <TextBlock
+                        x:Name="txtSpeedDirectDisplay"
+                        Foreground="{DynamicResource FluxOrange}"
+                        FontSize="14" />
+                </StackPanel>
+            </Border>
 
-            <StackPanel
+            <Border
+                Grid.Column="2"
+                Margin="14,0,0,0"
+                Classes="FluxPanel">
+                <StackPanel Spacing="10">
+                    <TextBlock Classes="FluxSectionTitle" Text="监听端口" />
+                    <TextBlock
+                        x:Name="txtInboundDisplay"
+                        Foreground="{DynamicResource FluxCyan}"
+                        FontSize="16"
+                        FontWeight="SemiBold" />
+                    <TextBlock
+                        x:Name="txtInboundLanDisplay"
+                        Classes="FluxSubtle"
+                        TextWrapping="Wrap" />
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <Grid
+            Grid.Row="1"
+            Margin="0,14,0,0"
+            ColumnDefinitions="*,*,Auto">
+            <Border Classes="FluxPanel">
+                <StackPanel Spacing="8">
+                    <TextBlock Classes="FluxSectionTitle" Text="{x:Static resx:ResUI.menuSystemproxy}" />
+                    <ComboBox
+                        x:Name="cmbSystemProxy"
+                        HorizontalAlignment="Stretch"
+                        ToolTip.Tip="{x:Static resx:ResUI.menuSystemproxy}">
+                        <ComboBoxItem Content="{x:Static resx:ResUI.menuSystemProxyClear}" />
+                        <ComboBoxItem Content="{x:Static resx:ResUI.menuSystemProxySet}" />
+                        <ComboBoxItem Content="{x:Static resx:ResUI.menuSystemProxyNothing}" />
+                        <ComboBoxItem Content="{x:Static resx:ResUI.menuSystemProxyPac}" />
+                    </ComboBox>
+                </StackPanel>
+            </Border>
+
+            <Border
+                Grid.Column="1"
+                Margin="14,0,0,0"
+                Classes="FluxPanel">
+                <StackPanel Spacing="8">
+                    <TextBlock Classes="FluxSectionTitle" Text="{x:Static resx:ResUI.menuRouting}" />
+                    <ComboBox
+                        x:Name="cmbRoutings2"
+                        HorizontalAlignment="Stretch"
+                        DisplayMemberBinding="{Binding Remarks}"
+                        ItemsSource="{Binding RoutingItems}"
+                        ToolTip.Tip="{x:Static resx:ResUI.menuRouting}" />
+                </StackPanel>
+            </Border>
+
+            <Border
                 x:Name="spEnableTun"
-                VerticalAlignment="Center"
-                Margin="{StaticResource MarginLr8}"
-                DockPanel.Dock="Left"
-                Orientation="Horizontal">
+                Grid.Column="2"
+                Margin="14,0,0,0"
+                Classes="FluxPanel">
+                <StackPanel Spacing="8">
+                    <TextBlock Classes="FluxSectionTitle" Text="{x:Static resx:ResUI.TbEnableTunAs}" />
+                    <ToggleSwitch
+                        x:Name="togEnableTun"
+                        HorizontalAlignment="Center"
+                        Theme="{DynamicResource SimpleToggleSwitch}" />
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <Border
+            Grid.Row="2"
+            Margin="0,14,0,0"
+            Classes="FluxPanel">
+            <StackPanel Spacing="10">
+                <TextBlock Classes="FluxSectionTitle" Text="快速提示" />
                 <TextBlock
-                    VerticalAlignment="Center"
-                    Margin="{StaticResource MarginLr8}"
-                    Text="{x:Static resx:ResUI.TbEnableTunAs}" />
-                <ToggleSwitch
-                    x:Name="togEnableTun"
-                    HorizontalAlignment="Center"
-                    Margin="{StaticResource Margin4}"
-                    Theme="{DynamicResource SimpleToggleSwitch}" />
+                    Classes="FluxHeroText"
+                    Text="点击当前节点卡片可以重新测试可用性；系统代理和路由模式在这里直接切换。更多协议、订阅、备份和 Core 更新保留在顶部高级菜单。" />
             </StackPanel>
-
-            <StackPanel
-                VerticalAlignment="Center"
-                Margin="{StaticResource MarginLr8}"
-                DockPanel.Dock="Left"
-                Orientation="Horizontal">
-                <ComboBox
-                    x:Name="cmbSystemProxy"
-                    Width="160"
-                    Margin="{StaticResource MarginLr8}"
-                    ToolTip.Tip="{x:Static resx:ResUI.menuSystemproxy}">
-                    <ComboBoxItem Content="{x:Static resx:ResUI.menuSystemProxyClear}" />
-                    <ComboBoxItem Content="{x:Static resx:ResUI.menuSystemProxySet}" />
-                    <ComboBoxItem Content="{x:Static resx:ResUI.menuSystemProxyNothing}" />
-                    <ComboBoxItem Content="{x:Static resx:ResUI.menuSystemProxyPac}" />
-                </ComboBox>
-
-                <ComboBox
-                    x:Name="cmbRoutings2"
-                    Width="160"
-                    Margin="{StaticResource MarginLr8}"
-                    DisplayMemberBinding="{Binding Remarks}"
-                    ItemsSource="{Binding RoutingItems}"
-                    ToolTip.Tip="{x:Static resx:ResUI.menuRouting}" />
-            </StackPanel>
-
-            <StackPanel VerticalAlignment="Center" Margin="{StaticResource MarginLr8}">
-                <TextBlock x:Name="txtRunningServerDisplay" />
-                <Border Margin="1" />
-                <TextBlock x:Name="txtRunningInfoDisplay" />
-            </StackPanel>
-        </DockPanel>
+        </Border>
     </Grid>
 </UserControl>
