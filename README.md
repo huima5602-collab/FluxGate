@@ -59,3 +59,7 @@ Browser performance validation should use a real browser with the same node and 
 - Keep risky namespace and internal type renames for a later controlled refactor.
 - Ordinary user UI should not show license or source-code notices.
 - Before public distribution, handle license and source-release obligations separately in release materials.
+
+## UI Preview Branch
+
+The `codex/ui-redesign` branch contains the first FluxGate UI preview. It keeps the validated proxy behavior from `v0.1.0-alpha.8` and focuses on the Avalonia shell: colorful dark theme, brand header, simplified home dashboard, refreshed node toolbar, and retained advanced menus.
