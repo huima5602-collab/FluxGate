@@ -40,7 +40,11 @@ TUIC imports default `allowInsecure` to enabled when the share link does not spe
 
 FluxGate starts sing-box with `ENABLE_DEPRECATED_LEGACY_DNS_SERVERS=true` for compatibility with the v2rayN 7.10.3 DNS configuration format when a newer sing-box core is present.
 
-Release packaging is based on the official `2dust/v2rayN` `7.10.3` release assets, then overlays the FluxGate desktop build into the same application root.
+Release packaging uses the official `2dust/v2rayN` `7.10.3` release assets only as the Core source. The FluxGate package root is built from the FluxGate desktop publish output, then the official `bin/` Core directory is copied in. The root package must not include `v2rayN.exe`.
+
+The normal update dialog does not offer upstream v2rayN application updates. Keep application updates on FluxGate releases; Core updates remain available.
+
+Browser performance validation should use a real browser with the same node and proxy mode. For the v0.1.0-alpha.8 package cleanup, the generated Xray config matched the original v2rayN 7.10.3 config except for the temporary local test port.
 
 ## Branding
 

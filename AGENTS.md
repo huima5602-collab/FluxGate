@@ -66,4 +66,7 @@ dotnet build .\v2rayN\v2rayN.sln -c Debug
 
 - 当前仓库通过 `global.json` 固定使用 .NET SDK `8.0.422` 构建。
 - sing-box 启动时会注入 `ENABLE_DEPRECATED_LEGACY_DNS_SERVERS=true`，用于兼容 v2rayN 7.10.3 的 DNS 配置格式。
+- Release 包以 FluxGate 发布输出为根目录，只从官方 v2rayN 7.10.3 包复制 `bin/` Core 目录，根目录禁止包含 `v2rayN.exe`。
+- 普通更新界面不提供上游 v2rayN 应用本体更新，只保留 Core 更新能力。
+- 性能验收以真实浏览器打开 Google/YouTube 等网页的体感和加载耗时为准，不以应用内测速数字为准。
 - 当前只完成首轮品牌替换，完整 UI 重构尚未开始。
