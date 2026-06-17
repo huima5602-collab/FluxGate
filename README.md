@@ -1,6 +1,6 @@
 # FluxGate
 
-FluxGate (流门) is a Windows proxy client UI fork based on `v2rayN 7.10.3`.
+FluxGate (??) is a Windows proxy client UI fork based on `v2rayN 7.10.3`.
 
 The first development stage keeps the v2rayN core, service layer, protocol handling, subscription handling, routing logic, and Avalonia desktop architecture intact. The current work focuses on importing the baseline, replacing visible product branding, and preparing the project for later UI redesign.
 
@@ -12,6 +12,17 @@ The first development stage keeps the v2rayN core, service layer, protocol handl
 - Main desktop project: `v2rayN/v2rayN.Desktop/v2rayN.Desktop.csproj`
 - Core/service project: `v2rayN/ServiceLib/ServiceLib.csproj`
 - Global hotkey dependency: `2dust/GlobalHotKeys` commit `b3b635e`
+
+## Download and Run
+
+For normal Windows users, use the GitHub Releases package instead of building from source.
+
+1. Open the Releases page: https://github.com/huima5602-collab/FluxGate/releases
+2. Download `FluxGate-windows-64-desktop.zip`.
+3. Extract the zip file to a normal folder, for example `D:\Apps\FluxGate`.
+4. Run `FluxGate.exe`.
+
+Use the `windows-64` desktop package for most Windows computers. The `windows-arm64` package is only for ARM64 Windows devices.
 
 ## Development Commands
 
@@ -28,7 +39,7 @@ This machine currently has .NET runtimes but no .NET SDK installed, so `dotnet b
 ## Branding
 
 - Product name: `FluxGate`
-- Chinese display name: `流门`
+- Chinese display name: `??`
 - Icon direction: dark shield, blue routing path, green active node
 - User-visible application title and output assembly name are set to `FluxGate`
 

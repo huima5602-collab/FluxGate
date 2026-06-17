@@ -7,7 +7,7 @@ OutputArch="FluxGate-${Arch}"
 FileName="FluxGate-${Arch}.zip"
 CoreFileName="v2rayN-${Arch}.zip"
 
-wget -nv -O $CoreFileName "https://github.com/2dust/v2rayN-core-bin/raw/refs/heads/master/$CoreFileName"
+wget -nv -O $FileName "https://github.com/2dust/v2rayN-core-bin/raw/refs/heads/master/$CoreFileName"
 
 ZipPath64="./$OutputArch"
 mkdir $ZipPath64

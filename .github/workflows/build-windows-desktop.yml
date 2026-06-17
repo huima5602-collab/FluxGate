@@ -8,7 +8,10 @@ on:
         type: string
   push:
     branches:
-      - master
+      - main
+
+permissions:
+  contents: write
 
 env:
   OutputArch: "windows-64"
@@ -47,7 +50,7 @@ jobs:
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4.6.1
       with:
-        name: v2rayN-windows-desktop
+        name: FluxGate-windows-desktop
         path: |
           ${{ github.workspace }}/v2rayN/Release/windows*
 
@@ -57,15 +60,15 @@ jobs:
       run: |
         chmod 755 package-release-zip.sh
         ./package-release-zip.sh $OutputArch $OutputPath64
-        mv "v2rayN-${OutputArch}.zip" "v2rayN-${OutputArch}-desktop.zip"
+        mv "FluxGate-${OutputArch}.zip" "FluxGate-${OutputArch}-desktop.zip"
         ./package-release-zip.sh $OutputArchArm $OutputPathArm64
-        mv "v2rayN-${OutputArchArm}.zip" "v2rayN-${OutputArchArm}-desktop.zip"
+        mv "FluxGate-${OutputArchArm}.zip" "FluxGate-${OutputArchArm}-desktop.zip"
 
     - name: Upload zip archive to release
       uses: svenstaro/upload-release-action@v2
       if: github.event.inputs.release_tag != ''
       with:
-        file: ${{ github.workspace }}/v2rayN*.zip
+        file: ${{ github.workspace }}/FluxGate*.zip
         tag: ${{ github.event.inputs.release_tag }}
         file_glob: true
         prerelease: true
