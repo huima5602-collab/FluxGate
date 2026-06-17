@@ -17,10 +17,10 @@ namespace ServiceLib.Common
     {
         private static readonly string _tag = "Utils";
 
-        #region 转换函数
+        #region ????
 
         /// <summary>
-        /// 转逗号分隔的字符串
+        /// ?????????
         /// </summary>
         /// <param name="lst"></param>
         /// <param name="wrap"></param>
@@ -51,7 +51,7 @@ namespace ServiceLib.Common
         }
 
         /// <summary>
-        /// 逗号分隔的字符串
+        /// ????????
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
@@ -76,7 +76,7 @@ namespace ServiceLib.Common
         }
 
         /// <summary>
-        /// 逗号分隔的字符串,先排序后转List
+        /// ????????,?????List
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
@@ -98,7 +98,7 @@ namespace ServiceLib.Common
         }
 
         /// <summary>
-        /// Base64编码
+        /// Base64??
         /// </summary>
         /// <param name="plainText"></param>
         /// <returns></returns>
@@ -118,7 +118,7 @@ namespace ServiceLib.Common
         }
 
         /// <summary>
-        /// Base64解码
+        /// Base64??
         /// </summary>
         /// <param name="plainText"></param>
         /// <returns></returns>
@@ -249,6 +249,11 @@ namespace ServiceLib.Common
             return Uri.UnescapeDataString(url);
         }
 
+        public static string HtmlDecode(string text)
+        {
+            return WebUtility.HtmlDecode(text);
+        }
+
         public static NameValueCollection ParseQueryString(string query)
         {
             var result = new NameValueCollection(StringComparer.OrdinalIgnoreCase);
@@ -267,6 +272,10 @@ namespace ServiceLib.Common
                 }
 
                 var key = Uri.UnescapeDataString(keyValue.First());
+                if (key.StartsWith("amp;", StringComparison.OrdinalIgnoreCase))
+                {
+                    key = key[4..];
+                }
                 var val = Uri.UnescapeDataString(keyValue.Last());
 
                 if (result[key] is null)
@@ -336,15 +345,15 @@ namespace ServiceLib.Common
                 return text;
             }
 
-            return text.Replace("，", ",").Replace(Environment.NewLine, ",");
+            return text.Replace(",", ",").Replace(Environment.NewLine, ",");
         }
 
-        #endregion 转换函数
+        #endregion ????
 
-        #region 数据检查
+        #region ????
 
         /// <summary>
-        /// 判断输入的是否是数字
+        /// ??????????
         /// </summary>
         /// <param name="oText"></param>
         /// <returns></returns>
@@ -369,7 +378,7 @@ namespace ServiceLib.Common
         }
 
         /// <summary>
-        /// 验证Domain地址是否合法
+        /// ??Domain??????
         /// </summary>
         /// <param name="domain"></param>
         public static bool IsDomain(string? domain)
@@ -401,7 +410,7 @@ namespace ServiceLib.Common
         {
             try
             {
-                return new Uri(url);
+                return new Uri(HtmlDecode(url));
             }
             catch (UriFormatException)
             {
@@ -425,9 +434,9 @@ namespace ServiceLib.Common
             return false;
         }
 
-        #endregion 数据检查
+        #endregion ????
 
-        #region 测速
+        #region ??
 
         private static bool PortInUse(int port)
         {
@@ -480,9 +489,9 @@ namespace ServiceLib.Common
             return 59090;
         }
 
-        #endregion 测速
+        #endregion ??
 
-        #region 杂项
+        #region ??
 
         public static bool UpgradeAppExists(out string upgradeFileName)
         {
@@ -491,7 +500,7 @@ namespace ServiceLib.Common
         }
 
         /// <summary>
-        /// 取得版本
+        /// ????
         /// </summary>
         /// <returns></returns>
         public static string GetVersion(bool blFull = true)
@@ -529,7 +538,7 @@ namespace ServiceLib.Common
         }
 
         /// <summary>
-        /// 取得GUID
+        /// ??GUID
         /// </summary>
         /// <returns></returns>
         public static string GetGuid(bool full = true)
@@ -626,7 +635,7 @@ namespace ServiceLib.Common
             return null;
         }
 
-        #endregion 杂项
+        #endregion ??
 
         #region TempPath
 
