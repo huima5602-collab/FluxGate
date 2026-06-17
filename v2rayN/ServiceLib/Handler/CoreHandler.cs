@@ -1,7 +1,5 @@
 using System.Diagnostics;
 using System.Text;
-using CliWrap;
-using CliWrap.Buffered;
 
 namespace ServiceLib.Handler
 {
@@ -18,6 +16,7 @@ namespace ServiceLib.Handler
         private int _linuxSudoPid = -1;
         private Action<bool, string>? _updateFunc;
         private const string _tag = "CoreHandler";
+        private const string SingBoxLegacyDnsEnv = "ENABLE_DEPRECATED_LEGACY_DNS_SERVERS";
 
         public async Task Init(Config config, Action<bool, string> updateFunc)
         {
@@ -275,6 +274,10 @@ namespace ServiceLib.Handler
                         StandardErrorEncoding = displayLog ? Encoding.UTF8 : null,
                     }
                 };
+                if (coreInfo.CoreType == ECoreType.sing_box)
+                {
+                    proc.StartInfo.Environment[SingBoxLegacyDnsEnv] = "true";
+                }
 
                 var isNeedSudo = mayNeedSudo && IsNeedSudo(coreInfo.CoreType);
                 if (isNeedSudo)
@@ -337,18 +340,36 @@ namespace ServiceLib.Handler
             try
             {
                 var fullConfigPath = Utils.GetBinConfigPath(configPath);
-                var result = await Cli.Wrap(fileName)
-                    .WithArguments(new[] { "check", "-c", fullConfigPath })
-                    .WithWorkingDirectory(Utils.GetBinConfigPath())
-                    .WithValidation(CommandResultValidation.None)
-                    .ExecuteBufferedAsync();
+                var proc = new Process
+                {
+                    StartInfo = new()
+                    {
+                        FileName = fileName,
+                        WorkingDirectory = Utils.GetBinConfigPath(),
+                        RedirectStandardOutput = true,
+                        RedirectStandardError = true,
+                        UseShellExecute = false,
+                        CreateNoWindow = true,
+                        StandardOutputEncoding = Encoding.UTF8,
+                        StandardErrorEncoding = Encoding.UTF8,
+                    }
+                };
+                proc.StartInfo.ArgumentList.Add("check");
+                proc.StartInfo.ArgumentList.Add("-c");
+                proc.StartInfo.ArgumentList.Add(fullConfigPath);
+                proc.StartInfo.Environment[SingBoxLegacyDnsEnv] = "true";
 
-                if (result.ExitCode == 0)
+                proc.Start();
+                var stdout = await proc.StandardOutput.ReadToEndAsync();
+                var stderr = await proc.StandardError.ReadToEndAsync();
+                await proc.WaitForExitAsync();
+
+                if (proc.ExitCode == 0)
                 {
                     return new RetResult(true);
                 }
 
-                var output = $"{result.StandardOutput}{Environment.NewLine}{result.StandardError}".Trim();
+                var output = $"{stdout}{Environment.NewLine}{stderr}".Trim();
                 return new RetResult(false, $"sing-box config check failed: {output}");
             }
             catch (Exception ex)
