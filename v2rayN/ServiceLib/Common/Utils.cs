@@ -249,6 +249,11 @@ namespace ServiceLib.Common
             return Uri.UnescapeDataString(url);
         }
 
+        public static string HtmlDecode(string text)
+        {
+            return WebUtility.HtmlDecode(text);
+        }
+
         public static NameValueCollection ParseQueryString(string query)
         {
             var result = new NameValueCollection(StringComparer.OrdinalIgnoreCase);
@@ -267,6 +272,10 @@ namespace ServiceLib.Common
                 }
 
                 var key = Uri.UnescapeDataString(keyValue.First());
+                if (key.StartsWith("amp;", StringComparison.OrdinalIgnoreCase))
+                {
+                    key = key[4..];
+                }
                 var val = Uri.UnescapeDataString(keyValue.Last());
 
                 if (result[key] is null)
@@ -401,7 +410,7 @@ namespace ServiceLib.Common
         {
             try
             {
-                return new Uri(url);
+                return new Uri(HtmlDecode(url));
             }
             catch (UriFormatException)
             {
