@@ -48,7 +48,7 @@ jobs:
         dotnet publish ./AmazTool/AmazTool.csproj             -c Release -r win-arm64 --self-contained=true -p:EnableWindowsTargeting=true -p:PublishTrimmed=true -o $OutputPathArm64
 
     - name: Upload build artifacts
-      uses: actions/upload-artifact@v4.6.1
+      uses: actions/upload-artifact@v7.0.1
       with:
         name: FluxGate-windows-desktop
         path: |
