@@ -809,11 +809,14 @@ namespace ServiceLib.Services.CoreConfig
                     {
                         server_name = Utils.String2List(node.RequestHost)?.First();
                     }
+                    var allowInsecure = node.ConfigType == EConfigType.TUIC && node.AllowInsecure.IsNullOrEmpty()
+                        ? true
+                        : Utils.ToBool(node.AllowInsecure.IsNullOrEmpty() ? _config.CoreBasicItem.DefAllowInsecure.ToString().ToLower() : node.AllowInsecure);
                     var tls = new Tls4Sbox()
                     {
                         enabled = true,
                         server_name = server_name,
-                        insecure = Utils.ToBool(node.AllowInsecure.IsNullOrEmpty() ? _config.CoreBasicItem.DefAllowInsecure.ToString().ToLower() : node.AllowInsecure),
+                        insecure = allowInsecure,
                         alpn = node.GetAlpn(),
                     };
                     if (Utils.IsNotEmpty(node.Fingerprint))
