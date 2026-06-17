@@ -6,11 +6,13 @@ OutputPath="$2"
 OutputArch="FluxGate-${Arch}"
 FileName="FluxGate-${Arch}.zip"
 CoreFileName="v2rayN-${Arch}.zip"
+CoreRoot="v2rayN-${Arch}"
 
-wget -nv -O $FileName "https://github.com/2dust/v2rayN-core-bin/raw/refs/heads/master/$CoreFileName"
+rm -rf "$OutputArch" "$CoreRoot" "$FileName" "$CoreFileName"
 
-ZipPath64="./$OutputArch"
-mkdir $ZipPath64
+wget -nv -O "$CoreFileName" "https://github.com/2dust/v2rayN-core-bin/raw/refs/heads/master/$CoreFileName"
+unzip -q "$CoreFileName"
+mv "$CoreRoot" "$OutputArch"
 
-cp -rf $OutputPath "$ZipPath64/$OutputArch"
-7z a -tZip $FileName "$ZipPath64/$OutputArch" -mx1
+cp -rf "$OutputPath"/. "$OutputArch"/
+7z a -tZip "$FileName" "$OutputArch" -mx1
