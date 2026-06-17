@@ -13,6 +13,17 @@ The first development stage keeps the v2rayN core, service layer, protocol handl
 - Core/service project: `v2rayN/ServiceLib/ServiceLib.csproj`
 - Global hotkey dependency: `2dust/GlobalHotKeys` commit `b3b635e`
 
+## Download and Run
+
+For normal Windows users, use the GitHub Releases package instead of building from source.
+
+1. Open the Releases page: https://github.com/huima5602-collab/FluxGate/releases
+2. Download `FluxGate-windows-64-desktop.zip`.
+3. Extract the zip file to a normal folder, for example `D:\Apps\FluxGate`.
+4. Run `FluxGate.exe`.
+
+Use the `windows-64` desktop package for most Windows computers. The `windows-arm64` package is only for ARM64 Windows devices.
+
 ## Development Commands
 
 ```powershell

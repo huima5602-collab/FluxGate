@@ -8,7 +8,10 @@ on:
         type: string
   push:
     branches:
-      - master
+      - main
+
+permissions:
+  contents: write
 
 env:
   OutputArch: "windows-64"
@@ -48,7 +51,7 @@ jobs:
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4.6.1
       with:
-        name: v2rayN-windows
+        name: FluxGate-windows
         path: |
           ${{ github.workspace }}/v2rayN/Release/windows*
     
@@ -65,7 +68,7 @@ jobs:
       uses: svenstaro/upload-release-action@v2
       if: github.event.inputs.release_tag != ''
       with:
-        file: ${{ github.workspace }}/v2rayN*.zip
+        file: ${{ github.workspace }}/FluxGate*.zip
         tag: ${{ github.event.inputs.release_tag }}
         file_glob: true
         prerelease: true
