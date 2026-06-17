@@ -1,5 +1,7 @@
 using System.Diagnostics;
 using System.Text;
+using CliWrap;
+using CliWrap.Buffered;
 
 namespace ServiceLib.Handler
 {
@@ -248,6 +250,16 @@ namespace ServiceLib.Handler
 
             try
             {
+                if (coreInfo.CoreType == ECoreType.sing_box)
+                {
+                    var checkResult = await CheckSingBoxConfig(fileName, configPath);
+                    if (checkResult.Success != true)
+                    {
+                        UpdateFunc(false, checkResult.Msg);
+                        return null;
+                    }
+                }
+
                 Process proc = new()
                 {
                     StartInfo = new()
@@ -317,6 +329,32 @@ namespace ServiceLib.Handler
                 Logging.SaveLog(_tag, ex);
                 UpdateFunc(mayNeedSudo, ex.Message);
                 return null;
+            }
+        }
+
+        private async Task<RetResult> CheckSingBoxConfig(string fileName, string configPath)
+        {
+            try
+            {
+                var fullConfigPath = Utils.GetBinConfigPath(configPath);
+                var result = await Cli.Wrap(fileName)
+                    .WithArguments(new[] { "check", "-c", fullConfigPath })
+                    .WithWorkingDirectory(Utils.GetBinConfigPath())
+                    .WithValidation(CommandResultValidation.None)
+                    .ExecuteBufferedAsync();
+
+                if (result.ExitCode == 0)
+                {
+                    return new RetResult(true);
+                }
+
+                var output = $"{result.StandardOutput}{Environment.NewLine}{result.StandardError}".Trim();
+                return new RetResult(false, $"sing-box config check failed: {output}");
+            }
+            catch (Exception ex)
+            {
+                Logging.SaveLog(_tag, ex);
+                return new RetResult(false, $"sing-box config check failed: {ex.Message}");
             }
         }
 
