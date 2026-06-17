@@ -16,7 +16,15 @@ unzip -q "$CoreFileName"
 if [ ! -d "$CoreRoot" ] && [[ "$Arch" == *"-desktop" ]]; then
   CoreRoot="v2rayN-${Arch%-desktop}"
 fi
-mv "$CoreRoot" "$OutputArch"
 
+mkdir -p "$OutputArch"
 cp -rf "$OutputPath"/. "$OutputArch"/
+rm -rf "$OutputArch/bin"
+cp -rf "$CoreRoot/bin" "$OutputArch/bin"
+
+if [ -e "$OutputArch/v2rayN.exe" ]; then
+  echo "Unexpected v2rayN.exe in FluxGate package" >&2
+  exit 1
+fi
+
 7z a -tZip "$FileName" "$OutputArch" -mx1
