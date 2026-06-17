@@ -693,6 +693,10 @@ namespace ServiceLib.Handler
             {
                 profileItem.StreamSecurity = Global.StreamSecurity;
             }
+            if (Utils.IsNullOrEmpty(profileItem.AllowInsecure))
+            {
+                profileItem.AllowInsecure = "true";
+            }
             if (Utils.IsNullOrEmpty(profileItem.Alpn))
             {
                 profileItem.Alpn = "h3";
