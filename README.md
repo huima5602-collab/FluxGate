@@ -36,6 +36,8 @@ dotnet run --project .\v2rayN\v2rayN.Desktop\v2rayN.Desktop.csproj
 
 This machine currently has .NET runtimes but no .NET SDK installed, so `dotnet build` cannot run here yet. Install the .NET 8 SDK before building.
 
+TUIC imports default `allowInsecure` to enabled when the share link does not specify it. This keeps compatibility with common TUIC nodes that use self-signed or otherwise untrusted certificates.
+
 ## Branding
 
 - Product name: `FluxGate`

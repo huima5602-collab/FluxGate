@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 namespace ServiceLib.Handler
 {
     /// <summary>
-    /// 本软件配置文件处理类
+    /// ??????????
     /// </summary>
     public class ConfigHandler
     {
@@ -14,7 +14,7 @@ namespace ServiceLib.Handler
         #region ConfigHandler
 
         /// <summary>
-        /// 载入配置文件
+        /// ??????
         /// </summary>
         /// <param name="config"></param>
         /// <returns></returns>
@@ -169,7 +169,7 @@ namespace ServiceLib.Handler
         }
 
         /// <summary>
-        /// 保参数
+        /// ???
         /// </summary>
         /// <param name="config"></param>
         /// <returns></returns>
@@ -291,7 +291,7 @@ namespace ServiceLib.Handler
         }
 
         /// <summary>
-        /// 移除服务器
+        /// ?????
         /// </summary>
         /// <param name="config"></param>
         /// <param name="indexes"></param>
@@ -311,7 +311,7 @@ namespace ServiceLib.Handler
         }
 
         /// <summary>
-        /// 克隆服务器
+        /// ?????
         /// </summary>
         /// <param name="config"></param>
         /// <param name="index"></param>
@@ -347,7 +347,7 @@ namespace ServiceLib.Handler
         }
 
         /// <summary>
-        /// 设置活动服务器
+        /// ???????
         /// </summary>
         /// <param name="config"></param>
         /// <param name="item"></param>
@@ -400,7 +400,7 @@ namespace ServiceLib.Handler
         }
 
         /// <summary>
-        /// 移动服务器
+        /// ?????
         /// </summary>
         /// <param name="config"></param>
         /// <param name="lstProfile"></param>
@@ -474,7 +474,7 @@ namespace ServiceLib.Handler
         }
 
         /// <summary>
-        /// 添加自定义服务器
+        /// ????????
         /// </summary>
         /// <param name="config"></param>
         /// <param name="profileItem"></param>
@@ -692,6 +692,10 @@ namespace ServiceLib.Handler
             if (Utils.IsNullOrEmpty(profileItem.StreamSecurity))
             {
                 profileItem.StreamSecurity = Global.StreamSecurity;
+            }
+            if (Utils.IsNullOrEmpty(profileItem.AllowInsecure))
+            {
+                profileItem.AllowInsecure = "true";
             }
             if (Utils.IsNullOrEmpty(profileItem.Alpn))
             {
@@ -1076,12 +1080,12 @@ namespace ServiceLib.Handler
         #region Batch add servers
 
         /// <summary>
-        /// 批量添加服务器
+        /// ???????
         /// </summary>
         /// <param name="config"></param>
         /// <param name="strData"></param>
         /// <param name="subid"></param>
-        /// <returns>成功导入的数量</returns>
+        /// <returns>???????</returns>
         private static async Task<int> AddBatchServersCommon(Config config, string strData, string subid, bool isSub)
         {
             if (Utils.IsNullOrEmpty(strData))
@@ -1450,7 +1454,7 @@ namespace ServiceLib.Handler
         }
 
         /// <summary>
-        /// 移除服务器
+        /// ?????
         /// </summary>
         /// <param name="config"></param>
         /// <param name="subid"></param>
@@ -1750,7 +1754,7 @@ namespace ServiceLib.Handler
             //Bypass the mainland
             var item2 = new RoutingItem()
             {
-                Remarks = $"{ver}绕过大陆(Whitelist)",
+                Remarks = $"{ver}????(Whitelist)",
                 Url = string.Empty,
                 Sort = maxSort + 1,
             };
@@ -1759,7 +1763,7 @@ namespace ServiceLib.Handler
             //Blacklist
             var item3 = new RoutingItem()
             {
-                Remarks = $"{ver}黑名单(Blacklist)",
+                Remarks = $"{ver}???(Blacklist)",
                 Url = string.Empty,
                 Sort = maxSort + 2,
             };
@@ -1768,7 +1772,7 @@ namespace ServiceLib.Handler
             //Global
             var item1 = new RoutingItem()
             {
-                Remarks = $"{ver}全局(Global)",
+                Remarks = $"{ver}??(Global)",
                 Url = string.Empty,
                 Sort = maxSort + 3,
             };
