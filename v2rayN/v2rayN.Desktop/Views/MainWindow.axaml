@@ -302,12 +302,20 @@
                                     Orientation="Horizontal"
                                     Spacing="8">
                                     <Button
-                                        x:Name="btnRoutingSettingPage"
+                                        x:Name="btnRoutingDefaultToolbar"
                                         Classes="FluxToolButton Green"
+                                        Content="默认规则" />
+                                    <Button
+                                        x:Name="btnRoutingImportToolbar"
+                                        Classes="FluxToolButton"
+                                        Content="导入" />
+                                    <Button
+                                        x:Name="btnRoutingSettingPage"
+                                        Classes="FluxToolButton Cyan"
                                         Content="编辑详情" />
                                     <Button
                                         x:Name="btnDNSSettingPage"
-                                        Classes="FluxToolButton Cyan"
+                                        Classes="FluxToolButton"
                                         Content="DNS 设置" />
                                 </StackPanel>
                             </Grid>
@@ -383,12 +391,24 @@
                                     <TextBlock Classes="FluxPageTitle" Text="设置" />
                                     <TextBlock Classes="FluxHeroText" Text="主设置页只放高频入口，完整选项仍保留原有设置窗口。" />
                                 </StackPanel>
-                                <Button
-                                    x:Name="btnOptionSettingPage"
+                                <StackPanel
                                     Grid.Column="1"
                                     VerticalAlignment="Bottom"
-                                    Classes="FluxToolButton Green"
-                                    Content="打开完整设置" />
+                                    Orientation="Horizontal"
+                                    Spacing="8">
+                                    <Button
+                                        x:Name="btnOptionSettingPage"
+                                        Classes="FluxToolButton Green"
+                                        Content="高级" />
+                                    <Button
+                                        x:Name="btnBackupTopPage"
+                                        Classes="FluxToolButton"
+                                        Content="备份" />
+                                    <Button
+                                        x:Name="btnOpenFolderTopPage"
+                                        Classes="FluxToolButton"
+                                        Content="打开目录" />
+                                </StackPanel>
                             </Grid>
 
                             <Grid

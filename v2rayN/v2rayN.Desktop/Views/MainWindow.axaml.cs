@@ -39,6 +39,7 @@ namespace v2rayN.Desktop.Views
             menuClose.Click += MenuClose_Click;
             btnFreeNodes.Click += BtnFreeNodes_Click;
             btnBackupPage.Click += MenuBackupAndRestore_Click;
+            btnBackupTopPage.Click += MenuBackupAndRestore_Click;
             btnTopClose.Click += MenuClose_Click;
             btnNavHome.Click += (_, _) => SelectFluxPage(0);
             btnNavNodes.Click += (_, _) => SelectFluxPage(1);
@@ -100,11 +101,14 @@ namespace v2rayN.Desktop.Views
                 this.BindCommand(ViewModel, vm => vm.RegionalPresetIranCmd, v => v.menuRegionalPresetsIran).DisposeWith(disposables);
                 this.BindCommand(ViewModel, vm => vm.AddVlessServerCmd, v => v.btnAddVlessPage).DisposeWith(disposables);
                 this.BindCommand(ViewModel, vm => vm.OptionSettingCmd, v => v.btnOptionSettingPage).DisposeWith(disposables);
+                this.BindCommand(ViewModel, vm => vm.RoutingSettingCmd, v => v.btnRoutingImportToolbar).DisposeWith(disposables);
+                this.BindCommand(ViewModel, vm => vm.RegionalPresetDefaultCmd, v => v.btnRoutingDefaultToolbar).DisposeWith(disposables);
                 this.BindCommand(ViewModel, vm => vm.RoutingSettingCmd, v => v.btnRoutingSettingPage).DisposeWith(disposables);
                 this.BindCommand(ViewModel, vm => vm.DNSSettingCmd, v => v.btnDNSSettingPage).DisposeWith(disposables);
                 this.BindCommand(ViewModel, vm => vm.GlobalHotkeySettingCmd, v => v.btnHotkeySettingPage).DisposeWith(disposables);
                 this.BindCommand(ViewModel, vm => vm.ClearServerStatisticsCmd, v => v.btnClearStatsPage).DisposeWith(disposables);
                 this.BindCommand(ViewModel, vm => vm.OpenTheFileLocationCmd, v => v.btnOpenFolderPage).DisposeWith(disposables);
+                this.BindCommand(ViewModel, vm => vm.OpenTheFileLocationCmd, v => v.btnOpenFolderTopPage).DisposeWith(disposables);
                 this.BindCommand(ViewModel, vm => vm.OpenTheFileLocationCmd, v => v.btnLogFolderPage).DisposeWith(disposables);
                 this.BindCommand(ViewModel, vm => vm.RegionalPresetDefaultCmd, v => v.btnRegionalPresetDefaultPage).DisposeWith(disposables);
                 this.BindCommand(ViewModel, vm => vm.RegionalPresetRussiaCmd, v => v.btnRegionalPresetRussiaPage).DisposeWith(disposables);
