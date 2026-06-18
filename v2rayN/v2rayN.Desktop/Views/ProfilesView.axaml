@@ -75,6 +75,18 @@
                                 <PathIcon Data="{StaticResource building_fit}" Foreground="{DynamicResource FluxOrange}" />
                             </Button.Content>
                         </Button>
+                        <Button
+                            x:Name="btnMixedTestServer"
+                            Classes="FluxToolButton Cyan"
+                            Content="测速" />
+                        <Button
+                            x:Name="btnSortServerResult"
+                            Classes="FluxToolButton"
+                            Content="排序" />
+                        <Button
+                            x:Name="btnRemoveInvalidServerResult"
+                            Classes="FluxToolButton Purple"
+                            Content="移除无效" />
                         <TextBox
                             x:Name="txtServerFilter"
                             Width="240"

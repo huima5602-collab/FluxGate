@@ -80,6 +80,9 @@ namespace v2rayN.Desktop.Views
                 this.BindCommand(ViewModel, vm => vm.MoveBottomCmd, v => v.menuMoveBottom).DisposeWith(disposables);
 
                 //servers ping
+                this.BindCommand(ViewModel, vm => vm.MixedTestServerCmd, v => v.btnMixedTestServer).DisposeWith(disposables);
+                this.BindCommand(ViewModel, vm => vm.SortServerResultCmd, v => v.btnSortServerResult).DisposeWith(disposables);
+                this.BindCommand(ViewModel, vm => vm.RemoveInvalidServerResultCmd, v => v.btnRemoveInvalidServerResult).DisposeWith(disposables);
                 this.BindCommand(ViewModel, vm => vm.MixedTestServerCmd, v => v.menuMixedTestServer).DisposeWith(disposables);
                 this.BindCommand(ViewModel, vm => vm.TcpingServerCmd, v => v.menuTcpingServer).DisposeWith(disposables);
                 this.BindCommand(ViewModel, vm => vm.RealPingServerCmd, v => v.menuRealPingServer).DisposeWith(disposables);
