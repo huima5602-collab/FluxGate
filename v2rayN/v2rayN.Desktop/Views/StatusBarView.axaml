@@ -190,12 +190,11 @@
                             Classes="FluxHeroText"
                             Text="{Binding RunningInfoDisplay}" />
                     </StackPanel>
-                    <Border Grid.Column="1" Classes="FluxMiniAction">
-                        <TextBlock
-                            FontSize="12"
-                            Foreground="{DynamicResource FluxText}"
-                            Text="点此测速" />
-                    </Border>
+                    <Button
+                        x:Name="btnTestServerAvailability"
+                        Grid.Column="1"
+                        Classes="FluxMiniActionButton"
+                        Content="点此测速" />
                     <TextBlock
                         x:Name="txtInboundLanDisplay"
                         Grid.Row="1"

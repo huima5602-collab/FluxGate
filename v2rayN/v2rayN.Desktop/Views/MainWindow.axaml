@@ -23,400 +23,530 @@
         Background="{DynamicResource FluxBg}"
         CloseOnClickAway="True"
         DisableOpeningAnimation="True">
-        <Grid RowDefinitions="72,*">
+        <Grid ColumnDefinitions="72,*">
             <Border
-                Grid.Row="0"
-                Padding="18,12"
-                Background="{DynamicResource FluxTopBar}"
+                Grid.Column="0"
+                Background="{DynamicResource FluxSidebar}"
                 BorderBrush="{DynamicResource FluxBorder}"
-                BorderThickness="0,0,0,1">
-                <Grid ColumnDefinitions="Auto,*,Auto" VerticalAlignment="Center">
-                    <StackPanel Orientation="Horizontal" Spacing="10">
-                        <Border
-                            Width="38"
-                            Height="38"
-                            Background="{DynamicResource FluxAccentGradient}"
-                            CornerRadius="10">
-                            <Image Margin="6" Source="/Assets/FluxGate.png" Stretch="Uniform" />
-                        </Border>
-                        <StackPanel VerticalAlignment="Center">
-                            <TextBlock
-                                Classes="FluxTitle"
-                                Text="FluxGate" />
-                            <TextBlock
-                                Classes="FluxSubtle"
-                                Text="流门 · 快速连接与节点管理" />
-                        </StackPanel>
-                    </StackPanel>
+                BorderThickness="0,0,1,0">
+                <StackPanel
+                    Margin="0,22,0,18"
+                    HorizontalAlignment="Center"
+                    Spacing="26">
+                    <Border Classes="FluxSideLogo">
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontSize="13"
+                            FontWeight="Bold"
+                            Foreground="{DynamicResource FluxText}"
+                            Text="FG" />
+                    </Border>
 
-                    <StackPanel
-                        Grid.Column="1"
-                        HorizontalAlignment="Center"
-                        Orientation="Horizontal"
-                        Spacing="10">
-                        <Border Classes="FluxPill Success">
-                            <StackPanel Orientation="Horizontal" Spacing="8">
-                                <Border Classes="FluxStatusDot" />
-                                <TextBlock Text="运行状态" />
-                            </StackPanel>
+                    <StackPanel Spacing="23">
+                        <Button
+                            x:Name="btnNavHome"
+                            Classes="FluxNavButton Active"
+                            Content="首页" />
+                        <Button
+                            x:Name="btnNavNodes"
+                            Classes="FluxNavButton"
+                            Content="节点" />
+                        <Button
+                            x:Name="btnNavSubs"
+                            Classes="FluxNavButton"
+                            Content="订阅" />
+                        <Button
+                            x:Name="btnNavRoutes"
+                            Classes="FluxNavButton"
+                            Content="路由" />
+                        <Button
+                            x:Name="btnNavSettings"
+                            Classes="FluxNavButton"
+                            Content="设置" />
+                        <Button
+                            x:Name="btnNavLogs"
+                            Classes="FluxNavButton"
+                            Content="日志" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <Grid
+                Grid.Column="1"
+                Margin="34,24,34,20"
+                RowDefinitions="54,*,26">
+                <Grid Grid.Row="0" ColumnDefinitions="Auto,*,Auto">
+                    <StackPanel Orientation="Horizontal" Spacing="14">
+                        <Border Classes="FluxBrandMark">
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="14"
+                                FontWeight="Bold"
+                                Foreground="{DynamicResource FluxText}"
+                                Text="FG" />
                         </Border>
-                        <Border Classes="FluxPill Cyan">
-                            <TextBlock Text="系统代理 / 路由可在首页切换" />
-                        </Border>
+                        <StackPanel VerticalAlignment="Center" Spacing="3">
+                            <TextBlock Classes="FluxTitle" Text="FluxGate" />
+                            <TextBlock Classes="FluxSubtle" Text="流门 · 1920 command preview" />
+                        </StackPanel>
                     </StackPanel>
 
                     <StackPanel
                         Grid.Column="2"
                         HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
                         Orientation="Horizontal"
-                        Spacing="8">
+                        Spacing="12">
                         <ContentControl x:Name="conTheme" />
+                        <Button
+                            x:Name="btnTopSubUpdate"
+                            Classes="FluxToolButton Cyan"
+                            Content="刷新订阅" />
+                        <Menu Classes="FluxTopMenu">
+                            <MenuItem Header="高级菜单">
+                                <MenuItem Header="{x:Static resx:ResUI.menuServers}">
+                                    <MenuItem x:Name="menuAddServerViaClipboard" Header="{x:Static resx:ResUI.menuAddServerViaClipboard}" />
+                                    <MenuItem x:Name="menuAddServerViaScan" Header="{x:Static resx:ResUI.menuAddServerViaScan}" />
+                                    <MenuItem x:Name="menuAddServerViaImage" Header="{x:Static resx:ResUI.menuAddServerViaImage}" />
+                                    <MenuItem x:Name="menuAddCustomServer" Header="{x:Static resx:ResUI.menuAddCustomServer}" />
+                                    <Separator />
+                                    <MenuItem x:Name="menuAddVmessServer" Header="{x:Static resx:ResUI.menuAddVmessServer}" />
+                                    <MenuItem x:Name="menuAddVlessServer" Header="{x:Static resx:ResUI.menuAddVlessServer}" />
+                                    <MenuItem x:Name="menuAddShadowsocksServer" Header="{x:Static resx:ResUI.menuAddShadowsocksServer}" />
+                                    <MenuItem x:Name="menuAddSocksServer" Header="{x:Static resx:ResUI.menuAddSocksServer}" />
+                                    <MenuItem x:Name="menuAddHttpServer" Header="{x:Static resx:ResUI.menuAddHttpServer}" />
+                                    <MenuItem x:Name="menuAddTrojanServer" Header="{x:Static resx:ResUI.menuAddTrojanServer}" />
+                                    <Separator />
+                                    <MenuItem x:Name="menuAddHysteria2Server" Header="{x:Static resx:ResUI.menuAddHysteria2Server}" />
+                                    <MenuItem x:Name="menuAddTuicServer" Header="{x:Static resx:ResUI.menuAddTuicServer}" />
+                                    <MenuItem x:Name="menuAddWireguardServer" Header="{x:Static resx:ResUI.menuAddWireguardServer}" />
+                                </MenuItem>
+                                <MenuItem Header="{x:Static resx:ResUI.menuSubscription}">
+                                    <MenuItem x:Name="menuSubSetting" Header="{x:Static resx:ResUI.menuSubSetting}" />
+                                    <Separator />
+                                    <MenuItem x:Name="menuSubUpdate" Header="{x:Static resx:ResUI.menuSubUpdate}" />
+                                    <MenuItem x:Name="menuSubUpdateViaProxy" Header="{x:Static resx:ResUI.menuSubUpdateViaProxy}" />
+                                    <MenuItem x:Name="menuSubGroupUpdate" Header="{x:Static resx:ResUI.menuSubGroupUpdate}" />
+                                    <MenuItem x:Name="menuSubGroupUpdateViaProxy" Header="{x:Static resx:ResUI.menuSubGroupUpdateViaProxy}" />
+                                </MenuItem>
+                                <MenuItem Header="{x:Static resx:ResUI.menuSetting}">
+                                    <MenuItem x:Name="menuOptionSetting" Header="{x:Static resx:ResUI.menuOptionSetting}" />
+                                    <MenuItem x:Name="menuRoutingSetting" Header="{x:Static resx:ResUI.menuRoutingSetting}" />
+                                    <MenuItem x:Name="menuDNSSetting" Header="{x:Static resx:ResUI.menuDNSSetting}" />
+                                    <MenuItem x:Name="menuGlobalHotkeySetting" Header="{x:Static resx:ResUI.menuGlobalHotkeySetting}" />
+                                    <Separator />
+                                    <MenuItem x:Name="menuRebootAsAdmin" Header="{x:Static resx:ResUI.menuRebootAsAdmin}" />
+                                    <MenuItem x:Name="menuSettingsSetUWP" Header="{x:Static resx:ResUI.TbSettingsSetUWP}" />
+                                    <MenuItem x:Name="menuClearServerStatistics" Header="{x:Static resx:ResUI.menuClearServerStatistics}" />
+                                    <Separator />
+                                    <MenuItem Header="{x:Static resx:ResUI.menuRegionalPresets}">
+                                        <MenuItem x:Name="menuRegionalPresetsDefault" Header="{x:Static resx:ResUI.menuRegionalPresetsDefault}" />
+                                        <MenuItem x:Name="menuRegionalPresetsRussia" Header="{x:Static resx:ResUI.menuRegionalPresetsRussia}" />
+                                        <MenuItem x:Name="menuRegionalPresetsIran" Header="{x:Static resx:ResUI.menuRegionalPresetsIran}" />
+                                    </MenuItem>
+                                    <MenuItem x:Name="menuBackupAndRestore" Header="{x:Static resx:ResUI.menuBackupAndRestore}" />
+                                    <MenuItem x:Name="menuOpenTheFileLocation" Header="{x:Static resx:ResUI.menuOpenTheFileLocation}" />
+                                </MenuItem>
+                                <Separator />
+                                <MenuItem x:Name="menuReload" Header="{x:Static resx:ResUI.menuReload}" />
+                                <MenuItem x:Name="menuCheckUpdate" Header="{x:Static resx:ResUI.menuCheckUpdate}" />
+                                <MenuItem x:Name="menuHelp" Header="{x:Static resx:ResUI.menuHelp}" />
+                                <MenuItem x:Name="menuPromotion" Header="{x:Static resx:ResUI.menuPromotion}" />
+                                <MenuItem x:Name="menuClose" Header="{x:Static resx:ResUI.menuExit}" />
+                            </MenuItem>
+                        </Menu>
                         <Button
                             x:Name="btnFreeNodes"
                             Classes="FluxToolButton Green"
                             Content="免费节点" />
-                        <Menu Classes="FluxMenu">
-                            <MenuItem Header="{x:Static resx:ResUI.menuServers}">
-                                <MenuItem x:Name="menuAddServerViaClipboard" Header="{x:Static resx:ResUI.menuAddServerViaClipboard}" />
-                                <MenuItem x:Name="menuAddServerViaScan" Header="{x:Static resx:ResUI.menuAddServerViaScan}" />
-                                <MenuItem x:Name="menuAddServerViaImage" Header="{x:Static resx:ResUI.menuAddServerViaImage}" />
-                                <MenuItem x:Name="menuAddCustomServer" Header="{x:Static resx:ResUI.menuAddCustomServer}" />
-                                <Separator />
-                                <MenuItem x:Name="menuAddVmessServer" Header="{x:Static resx:ResUI.menuAddVmessServer}" />
-                                <MenuItem x:Name="menuAddVlessServer" Header="{x:Static resx:ResUI.menuAddVlessServer}" />
-                                <MenuItem x:Name="menuAddShadowsocksServer" Header="{x:Static resx:ResUI.menuAddShadowsocksServer}" />
-                                <MenuItem x:Name="menuAddSocksServer" Header="{x:Static resx:ResUI.menuAddSocksServer}" />
-                                <MenuItem x:Name="menuAddHttpServer" Header="{x:Static resx:ResUI.menuAddHttpServer}" />
-                                <MenuItem x:Name="menuAddTrojanServer" Header="{x:Static resx:ResUI.menuAddTrojanServer}" />
-                                <Separator />
-                                <MenuItem x:Name="menuAddHysteria2Server" Header="{x:Static resx:ResUI.menuAddHysteria2Server}" />
-                                <MenuItem x:Name="menuAddTuicServer" Header="{x:Static resx:ResUI.menuAddTuicServer}" />
-                                <MenuItem x:Name="menuAddWireguardServer" Header="{x:Static resx:ResUI.menuAddWireguardServer}" />
-                            </MenuItem>
-                            <MenuItem Header="{x:Static resx:ResUI.menuSubscription}">
-                                <MenuItem x:Name="menuSubSetting" Header="{x:Static resx:ResUI.menuSubSetting}" />
-                                <Separator />
-                                <MenuItem x:Name="menuSubUpdate" Header="{x:Static resx:ResUI.menuSubUpdate}" />
-                                <MenuItem x:Name="menuSubUpdateViaProxy" Header="{x:Static resx:ResUI.menuSubUpdateViaProxy}" />
-                                <MenuItem x:Name="menuSubGroupUpdate" Header="{x:Static resx:ResUI.menuSubGroupUpdate}" />
-                                <MenuItem x:Name="menuSubGroupUpdateViaProxy" Header="{x:Static resx:ResUI.menuSubGroupUpdateViaProxy}" />
-                            </MenuItem>
-                            <MenuItem Header="{x:Static resx:ResUI.menuSetting}">
-                                <MenuItem x:Name="menuOptionSetting" Header="{x:Static resx:ResUI.menuOptionSetting}" />
-                                <MenuItem x:Name="menuRoutingSetting" Header="{x:Static resx:ResUI.menuRoutingSetting}" />
-                                <MenuItem x:Name="menuDNSSetting" Header="{x:Static resx:ResUI.menuDNSSetting}" />
-                                <MenuItem x:Name="menuGlobalHotkeySetting" Header="{x:Static resx:ResUI.menuGlobalHotkeySetting}" />
-                                <Separator />
-                                <MenuItem x:Name="menuRebootAsAdmin" Header="{x:Static resx:ResUI.menuRebootAsAdmin}" />
-                                <MenuItem x:Name="menuSettingsSetUWP" Header="{x:Static resx:ResUI.TbSettingsSetUWP}" />
-                                <MenuItem x:Name="menuClearServerStatistics" Header="{x:Static resx:ResUI.menuClearServerStatistics}" />
-                                <Separator />
-                                <MenuItem Header="{x:Static resx:ResUI.menuRegionalPresets}">
-                                    <MenuItem x:Name="menuRegionalPresetsDefault" Header="{x:Static resx:ResUI.menuRegionalPresetsDefault}" />
-                                    <MenuItem x:Name="menuRegionalPresetsRussia" Header="{x:Static resx:ResUI.menuRegionalPresetsRussia}" />
-                                    <MenuItem x:Name="menuRegionalPresetsIran" Header="{x:Static resx:ResUI.menuRegionalPresetsIran}" />
-                                </MenuItem>
-                                <MenuItem x:Name="menuBackupAndRestore" Header="{x:Static resx:ResUI.menuBackupAndRestore}" />
-                                <MenuItem x:Name="menuOpenTheFileLocation" Header="{x:Static resx:ResUI.menuOpenTheFileLocation}" />
-                            </MenuItem>
-                            <MenuItem x:Name="menuReload" Header="{x:Static resx:ResUI.menuReload}" />
-                            <MenuItem x:Name="menuCheckUpdate" Header="{x:Static resx:ResUI.menuCheckUpdate}" />
-                            <MenuItem x:Name="menuHelp" Header="{x:Static resx:ResUI.menuHelp}" />
-                            <MenuItem x:Name="menuPromotion" Header="{x:Static resx:ResUI.menuPromotion}" />
-                            <MenuItem x:Name="menuClose" Header="{x:Static resx:ResUI.menuExit}" />
-                        </Menu>
+                        <Button
+                            x:Name="btnTopClose"
+                            Classes="FluxToolButton"
+                            Content="退出" />
                     </StackPanel>
                 </Grid>
-            </Border>
+
+                <Grid Grid.Row="1" Margin="0,14,0,0">
+                    <Border
+                        x:Name="pageHome"
+                        Classes="FluxPanel FluxMainPanel">
+                        <view:StatusBarView />
+                    </Border>
+
+                    <Border
+                        x:Name="pageNodes"
+                        Classes="FluxPanel FluxWorkspace"
+                        IsVisible="False">
+                        <Grid RowDefinitions="Auto,*">
+                            <Grid ColumnDefinitions="*,Auto">
+                                <StackPanel Spacing="8">
+                                    <TextBlock Classes="FluxPageTitle" Text="节点管理" />
+                                    <TextBlock Classes="FluxHeroText" Text="按分组、延迟和可用性管理代理节点，保留原有批量操作和右键菜单。" />
+                                </StackPanel>
+                                <StackPanel
+                                    Grid.Column="1"
+                                    VerticalAlignment="Bottom"
+                                    Orientation="Horizontal"
+                                    Spacing="8">
+                                    <Button
+                                        x:Name="btnAddVlessPage"
+                                        Classes="FluxToolButton Green"
+                                        Content="添加节点" />
+                                    <Button
+                                        x:Name="btnNodeSubUpdatePage"
+                                        Classes="FluxToolButton Cyan"
+                                        Content="刷新订阅" />
+                                </StackPanel>
+                            </Grid>
+                            <ContentControl
+                                x:Name="tabProfiles2"
+                                Grid.Row="1"
+                                Margin="0,18,0,0" />
+                        </Grid>
+                    </Border>
+
+                    <Border
+                        x:Name="pageSubscription"
+                        Classes="FluxPanel FluxWorkspace"
+                        IsVisible="False">
+                        <Grid RowDefinitions="Auto,Auto,*">
+                            <Grid ColumnDefinitions="*,Auto">
+                                <StackPanel Spacing="8">
+                                    <TextBlock Classes="FluxPageTitle" Text="订阅管理" />
+                                    <TextBlock Classes="FluxHeroText" Text="集中维护订阅源、更新时间、节点数量和分组策略。" />
+                                </StackPanel>
+                                <StackPanel
+                                    Grid.Column="1"
+                                    VerticalAlignment="Bottom"
+                                    Orientation="Horizontal"
+                                    Spacing="8">
+                                    <Button
+                                        x:Name="btnSubSettingPage"
+                                        Classes="FluxToolButton Green"
+                                        Content="添加订阅" />
+                                    <Button
+                                        x:Name="btnSubUpdatePage"
+                                        Classes="FluxToolButton Cyan"
+                                        Content="全部更新" />
+                                    <Button
+                                        x:Name="btnSubUpdateViaProxyPage"
+                                        Classes="FluxToolButton"
+                                        Content="通过代理更新" />
+                                </StackPanel>
+                            </Grid>
+
+                            <Grid
+                                Grid.Row="1"
+                                Margin="0,20,0,0"
+                                ColumnDefinitions="*,*,*">
+                                <Border Classes="FluxMetricCard Green">
+                                    <StackPanel Spacing="8">
+                                        <TextBlock Classes="FluxTinyLabel" Text="默认订阅" />
+                                        <TextBlock Classes="FluxMetricText" Text="节点数量与状态沿用真实订阅窗口" />
+                                    </StackPanel>
+                                </Border>
+                                <Border
+                                    Grid.Column="1"
+                                    Margin="12,0,0,0"
+                                    Classes="FluxMetricCard Cyan">
+                                    <StackPanel Spacing="8">
+                                        <TextBlock Classes="FluxTinyLabel" Text="更新策略" />
+                                        <TextBlock Classes="FluxMetricText" Text="保留原 v2rayN 更新流程" />
+                                    </StackPanel>
+                                </Border>
+                                <Border
+                                    Grid.Column="2"
+                                    Margin="12,0,0,0"
+                                    Classes="FluxMetricCard Purple">
+                                    <StackPanel Spacing="8">
+                                        <TextBlock Classes="FluxTinyLabel" Text="分组更新" />
+                                        <TextBlock Classes="FluxMetricText" Text="当前分组可单独刷新" />
+                                    </StackPanel>
+                                </Border>
+                            </Grid>
+
+                            <Border
+                                Grid.Row="2"
+                                Margin="0,18,0,0"
+                                Classes="FluxPanel FluxNodePanel">
+                                <Grid ColumnDefinitions="*,Auto">
+                                    <StackPanel Spacing="8">
+                                        <TextBlock Classes="FluxSectionTitle" Text="订阅策略" />
+                                        <TextBlock Classes="FluxHeroText" Text="普通用户只看到更新入口；订阅 URL、转换规则、排序和备注等高级字段仍在订阅设置弹窗中完成。" />
+                                    </StackPanel>
+                                    <Button
+                                        x:Name="btnSubGroupUpdatePage"
+                                        Grid.Column="1"
+                                        Classes="FluxToolButton Purple"
+                                        Content="更新当前分组" />
+                                </Grid>
+                            </Border>
+                        </Grid>
+                    </Border>
+
+                    <Border
+                        x:Name="pageRouting"
+                        Classes="FluxPanel FluxWorkspace"
+                        IsVisible="False">
+                        <Grid RowDefinitions="Auto,Auto,*">
+                            <Grid ColumnDefinitions="*,Auto">
+                                <StackPanel Spacing="8">
+                                    <TextBlock Classes="FluxPageTitle" Text="路由规则" />
+                                    <TextBlock Classes="FluxHeroText" Text="用小白可理解的策略卡片承载原有路由能力，规则详情继续使用现有编辑器。" />
+                                </StackPanel>
+                                <StackPanel
+                                    Grid.Column="1"
+                                    VerticalAlignment="Bottom"
+                                    Orientation="Horizontal"
+                                    Spacing="8">
+                                    <Button
+                                        x:Name="btnRoutingSettingPage"
+                                        Classes="FluxToolButton Green"
+                                        Content="编辑详情" />
+                                    <Button
+                                        x:Name="btnDNSSettingPage"
+                                        Classes="FluxToolButton Cyan"
+                                        Content="DNS 设置" />
+                                </StackPanel>
+                            </Grid>
+
+                            <Grid
+                                Grid.Row="1"
+                                Margin="0,20,0,0"
+                                ColumnDefinitions="*,*,*">
+                                <Border Classes="FluxMetricCard Green">
+                                    <StackPanel Spacing="8">
+                                        <TextBlock Classes="FluxTinyLabel" Text="01 国内网站直连" />
+                                        <TextBlock Classes="FluxMetricText" Text="常见 CN 域名、局域网、私有地址不走代理" />
+                                    </StackPanel>
+                                </Border>
+                                <Border
+                                    Grid.Column="1"
+                                    Margin="12,0,0,0"
+                                    Classes="FluxMetricCard Cyan">
+                                    <StackPanel Spacing="8">
+                                        <TextBlock Classes="FluxTinyLabel" Text="02 国外网站代理" />
+                                        <TextBlock Classes="FluxMetricText" Text="Google、YouTube、GitHub 等走当前节点" />
+                                    </StackPanel>
+                                </Border>
+                                <Border
+                                    Grid.Column="2"
+                                    Margin="12,0,0,0"
+                                    Classes="FluxMetricCard Orange">
+                                    <StackPanel Spacing="8">
+                                        <TextBlock Classes="FluxTinyLabel" Text="03 区域预设" />
+                                        <TextBlock Classes="FluxMetricText" Text="按地区切换常用规则模板" />
+                                    </StackPanel>
+                                </Border>
+                            </Grid>
+
+                            <Border
+                                Grid.Row="2"
+                                Margin="0,18,0,0"
+                                Classes="FluxPanel FluxNodePanel">
+                                <Grid ColumnDefinitions="*,Auto">
+                                    <StackPanel Spacing="8">
+                                        <TextBlock Classes="FluxSectionTitle" Text="当前模式" />
+                                        <TextBlock Classes="FluxHeroText" Text="主界面保留自动、全局、直连和绕过大陆等入口；复杂 geosite、geoip、domainStrategy 放到详情弹窗。" />
+                                    </StackPanel>
+                                    <StackPanel
+                                        Grid.Column="1"
+                                        Orientation="Horizontal"
+                                        Spacing="8">
+                                        <Button
+                                            x:Name="btnRegionalPresetDefaultPage"
+                                            Classes="FluxToolButton Green"
+                                            Content="默认" />
+                                        <Button
+                                            x:Name="btnRegionalPresetRussiaPage"
+                                            Classes="FluxToolButton"
+                                            Content="Russia" />
+                                        <Button
+                                            x:Name="btnRegionalPresetIranPage"
+                                            Classes="FluxToolButton"
+                                            Content="Iran" />
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+                        </Grid>
+                    </Border>
+
+                    <Border
+                        x:Name="pageSettings"
+                        Classes="FluxPanel FluxWorkspace"
+                        IsVisible="False">
+                        <Grid RowDefinitions="Auto,Auto,*">
+                            <Grid ColumnDefinitions="*,Auto">
+                                <StackPanel Spacing="8">
+                                    <TextBlock Classes="FluxPageTitle" Text="设置" />
+                                    <TextBlock Classes="FluxHeroText" Text="主设置页只放高频入口，完整选项仍保留原有设置窗口。" />
+                                </StackPanel>
+                                <Button
+                                    x:Name="btnOptionSettingPage"
+                                    Grid.Column="1"
+                                    VerticalAlignment="Bottom"
+                                    Classes="FluxToolButton Green"
+                                    Content="打开完整设置" />
+                            </Grid>
+
+                            <Grid
+                                Grid.Row="1"
+                                Margin="0,20,0,0"
+                                ColumnDefinitions="*,*,*">
+                                <Border Classes="FluxMetricCard Cyan">
+                                    <StackPanel Spacing="8">
+                                        <TextBlock Classes="FluxTinyLabel" Text="基础选项" />
+                                        <TextBlock Classes="FluxMetricText" Text="端口、启动、语言、主题" />
+                                    </StackPanel>
+                                </Border>
+                                <Border
+                                    Grid.Column="1"
+                                    Margin="12,0,0,0"
+                                    Classes="FluxMetricCard Purple">
+                                    <StackPanel Spacing="8">
+                                        <TextBlock Classes="FluxTinyLabel" Text="快捷键" />
+                                        <TextBlock Classes="FluxMetricText" Text="全局热键设置" />
+                                    </StackPanel>
+                                </Border>
+                                <Border
+                                    Grid.Column="2"
+                                    Margin="12,0,0,0"
+                                    Classes="FluxMetricCard Green">
+                                    <StackPanel Spacing="8">
+                                        <TextBlock Classes="FluxTinyLabel" Text="维护" />
+                                        <TextBlock Classes="FluxMetricText" Text="备份、目录、统计清理" />
+                                    </StackPanel>
+                                </Border>
+                            </Grid>
+
+                            <Border
+                                Grid.Row="2"
+                                Margin="0,18,0,0"
+                                Classes="FluxPanel FluxNodePanel">
+                                <StackPanel Spacing="14">
+                                    <TextBlock Classes="FluxSectionTitle" Text="常用设置入口" />
+                                    <WrapPanel>
+                                        <Button
+                                            x:Name="btnHotkeySettingPage"
+                                            Margin="0,0,8,8"
+                                            Classes="FluxToolButton"
+                                            Content="全局热键" />
+                                        <Button
+                                            x:Name="btnBackupPage"
+                                            Margin="0,0,8,8"
+                                            Classes="FluxToolButton"
+                                            Content="备份与恢复" />
+                                        <Button
+                                            x:Name="btnOpenFolderPage"
+                                            Margin="0,0,8,8"
+                                            Classes="FluxToolButton"
+                                            Content="打开配置目录" />
+                                        <Button
+                                            x:Name="btnClearStatsPage"
+                                            Margin="0,0,8,8"
+                                            Classes="FluxToolButton"
+                                            Content="清理统计" />
+                                    </WrapPanel>
+                                    <TextBlock Classes="FluxHeroText" Text="普通用户先看入口卡片，高级参数集中在弹窗中，避免主界面过载。" />
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+                    </Border>
+
+                    <Border
+                        x:Name="pageLogs"
+                        Classes="FluxPanel FluxWorkspace"
+                        IsVisible="False">
+                        <Grid RowDefinitions="Auto,Auto,*">
+                            <Grid ColumnDefinitions="*,Auto">
+                                <StackPanel Spacing="8">
+                                    <TextBlock Classes="FluxPageTitle" Text="运行日志" />
+                                    <TextBlock Classes="FluxHeroText" Text="保留真实日志、复制、清空和自动刷新能力，外观收拢到命令面板中。" />
+                                </StackPanel>
+                                <Button
+                                    x:Name="btnLogFolderPage"
+                                    Grid.Column="1"
+                                    VerticalAlignment="Bottom"
+                                    Classes="FluxToolButton"
+                                    Content="打开目录" />
+                            </Grid>
+                            <Grid
+                                Grid.Row="1"
+                                Margin="0,20,0,0"
+                                ColumnDefinitions="*,*,*">
+                                <Border Classes="FluxMetricCard Green">
+                                    <StackPanel Spacing="8">
+                                        <TextBlock Classes="FluxTinyLabel" Text="Core" />
+                                        <TextBlock Classes="FluxMetricText" Text="运行状态来自真实日志流" />
+                                    </StackPanel>
+                                </Border>
+                                <Border
+                                    Grid.Column="1"
+                                    Margin="12,0,0,0"
+                                    Classes="FluxMetricCard Cyan">
+                                    <StackPanel Spacing="8">
+                                        <TextBlock Classes="FluxTinyLabel" Text="最近连接" />
+                                        <TextBlock Classes="FluxMetricText" Text="连接、订阅、代理切换集中记录" />
+                                    </StackPanel>
+                                </Border>
+                                <Border
+                                    Grid.Column="2"
+                                    Margin="12,0,0,0"
+                                    Classes="FluxMetricCard Orange">
+                                    <StackPanel Spacing="8">
+                                        <TextBlock Classes="FluxTinyLabel" Text="提示" />
+                                        <TextBlock Classes="FluxMetricText" Text="排查问题时优先看这里" />
+                                    </StackPanel>
+                                </Border>
+                            </Grid>
+                            <ContentControl
+                                x:Name="tabMsgView2"
+                                Grid.Row="2"
+                                Margin="0,18,0,0" />
+                        </Grid>
+                    </Border>
+
+                    <ContentControl
+                        x:Name="tabClashProxies2"
+                        IsVisible="False" />
+                    <ContentControl
+                        x:Name="tabClashConnections2"
+                        IsVisible="False" />
+                </Grid>
+
+                <TextBlock
+                    Grid.Row="2"
+                    VerticalAlignment="Bottom"
+                    Classes="FluxFooter"
+                    Text="v0.2 UI preview · 暗色小白模式 · 不展示开源协议说明 · 保留高级入口" />
+            </Grid>
 
             <Grid
-                Grid.Row="1"
-                Margin="10,8,12,10">
-                <Grid>
-                    <Grid
-                        x:Name="gridMain"
-                        ColumnDefinitions="1*,10,1*"
-                        IsVisible="False">
-                        <ContentControl x:Name="tabProfiles" Grid.Column="0" />
-                        <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" />
-                        <TabControl x:Name="tabMain" Grid.Column="2">
-                            <TabItem x:Name="tabMsgView" Header="{x:Static resx:ResUI.MsgInformationTitle}" />
-                            <TabItem x:Name="tabClashProxies" Header="{x:Static resx:ResUI.TbProxies}" />
-                            <TabItem x:Name="tabClashConnections" Header="{x:Static resx:ResUI.TbConnections}" />
-                        </TabControl>
-                    </Grid>
-                    <Grid
-                        x:Name="gridMain1"
-                        IsVisible="False"
-                        RowDefinitions="1*,10,1*">
-                        <ContentControl x:Name="tabProfiles1" Grid.Row="0" />
-                        <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" />
-                        <TabControl x:Name="tabMain1" Grid.Row="2" TabStripPlacement="Left">
-                            <TabItem x:Name="tabMsgView1" Header="{x:Static resx:ResUI.MsgInformationTitle}" />
-                            <TabItem x:Name="tabClashProxies1" Header="{x:Static resx:ResUI.TbProxies}" />
-                            <TabItem x:Name="tabClashConnections1" Header="{x:Static resx:ResUI.TbConnections}" />
-                        </TabControl>
-                    </Grid>
-                    <TabControl
-                        x:Name="tabMain2"
-                        Classes="FluxWorkspaceTabs"
-                        TabStripPlacement="Left">
-                        <TabItem x:Name="tabHome" Header="首页">
-                            <Border Classes="FluxPanel FluxHomeShell">
-                                <Grid RowDefinitions="Auto,*">
-                                    <StackPanel Spacing="4">
-                                        <TextBlock Classes="FluxSectionTitle" Text="Minimal Command" />
-                                        <TextBlock Classes="FluxHeroTitle FluxHomeTitle" Text="代理已连接" />
-                                        <TextBlock Classes="FluxHeroText" Text="节点、系统代理、路由和入口端口集中监控" />
-                                    </StackPanel>
-                                    <view:StatusBarView Grid.Row="1" Margin="0,12,0,0" />
-                                </Grid>
-                            </Border>
-                        </TabItem>
-                        <TabItem x:Name="tabProfiles2" Header="节点" />
-                        <TabItem x:Name="tabSubscription" Header="订阅">
-                            <Border Classes="FluxPanel FluxHomeShell">
-                                <Grid RowDefinitions="Auto,Auto,*">
-                                    <Grid ColumnDefinitions="*,Auto">
-                                        <StackPanel Spacing="6">
-                                            <TextBlock Classes="FluxHeroTitle FluxHomeTitle" Text="订阅管理" />
-                                            <TextBlock Classes="FluxHeroText" Text="集中维护订阅源、节点更新和分组策略。详细订阅编辑继续使用原有弹窗，避免改动订阅解析逻辑。" />
-                                        </StackPanel>
-                                        <StackPanel
-                                            Grid.Column="1"
-                                            VerticalAlignment="Top"
-                                            Orientation="Horizontal"
-                                            Spacing="8">
-                                            <Button
-                                                x:Name="btnSubSettingPage"
-                                                Classes="FluxToolButton Cyan"
-                                                Content="订阅设置" />
-                                            <Button
-                                                x:Name="btnSubUpdatePage"
-                                                Classes="FluxToolButton Green"
-                                                Content="全部更新" />
-                                            <Button
-                                                x:Name="btnSubUpdateViaProxyPage"
-                                                Classes="FluxToolButton"
-                                                Content="通过代理更新" />
-                                        </StackPanel>
-                                    </Grid>
+                x:Name="gridMain"
+                ColumnDefinitions="1*,10,1*"
+                IsVisible="False">
+                <ContentControl x:Name="tabProfiles" Grid.Column="0" />
+                <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" />
+                <TabControl x:Name="tabMain" Grid.Column="2">
+                    <TabItem x:Name="tabMsgView" Header="{x:Static resx:ResUI.MsgInformationTitle}" />
+                    <TabItem x:Name="tabClashProxies" Header="{x:Static resx:ResUI.TbProxies}" />
+                    <TabItem x:Name="tabClashConnections" Header="{x:Static resx:ResUI.TbConnections}" />
+                </TabControl>
+            </Grid>
 
-                                    <Grid
-                                        Grid.Row="1"
-                                        Margin="0,18,0,0"
-                                        ColumnDefinitions="*,*,*">
-                                        <Border Classes="FluxMetricCard Cyan">
-                                            <StackPanel Spacing="8">
-                                                <TextBlock Classes="FluxTinyLabel" Text="订阅入口" />
-                                                <TextBlock Classes="FluxMetricText" Text="添加、编辑、启停订阅" />
-                                            </StackPanel>
-                                        </Border>
-                                        <Border
-                                            Grid.Column="1"
-                                            Margin="12,0,0,0"
-                                            Classes="FluxMetricCard Green">
-                                            <StackPanel Spacing="8">
-                                                <TextBlock Classes="FluxTinyLabel" Text="更新策略" />
-                                                <TextBlock Classes="FluxMetricText" Text="保留原 v2rayN 更新流程" />
-                                            </StackPanel>
-                                        </Border>
-                                        <Border
-                                            Grid.Column="2"
-                                            Margin="12,0,0,0"
-                                            Classes="FluxMetricCard Purple">
-                                            <StackPanel Spacing="8">
-                                                <TextBlock Classes="FluxTinyLabel" Text="分组更新" />
-                                                <TextBlock Classes="FluxMetricText" Text="当前分组可单独刷新" />
-                                            </StackPanel>
-                                        </Border>
-                                    </Grid>
-
-                                    <Border
-                                        Grid.Row="2"
-                                        Margin="0,18,0,0"
-                                        Classes="FluxPanel FluxNodePanel">
-                                        <Grid RowDefinitions="Auto,*" ColumnDefinitions="*,Auto">
-                                            <StackPanel Spacing="8">
-                                                <TextBlock Classes="FluxSectionTitle" Text="小白模式说明" />
-                                                <TextBlock Classes="FluxHeroText" Text="主界面只保留高频订阅操作。订阅 URL、转换规则、排序、备注等高级字段仍在订阅设置弹窗中完成。" />
-                                            </StackPanel>
-                                            <Button
-                                                x:Name="btnSubGroupUpdatePage"
-                                                Grid.Column="1"
-                                                Classes="FluxToolButton Purple"
-                                                Content="更新当前分组" />
-                                        </Grid>
-                                    </Border>
-                                </Grid>
-                            </Border>
-                        </TabItem>
-                        <TabItem x:Name="tabRouting" Header="路由">
-                            <Border Classes="FluxPanel FluxHomeShell">
-                                <Grid RowDefinitions="Auto,Auto,*">
-                                    <Grid ColumnDefinitions="*,Auto">
-                                        <StackPanel Spacing="6">
-                                            <TextBlock Classes="FluxHeroTitle FluxHomeTitle" Text="路由规则" />
-                                            <TextBlock Classes="FluxHeroText" Text="用策略卡片展示常见路由模式；规则编辑、区域预设和高级 DNS 仍调用现有功能。" />
-                                        </StackPanel>
-                                        <StackPanel
-                                            Grid.Column="1"
-                                            VerticalAlignment="Top"
-                                            Orientation="Horizontal"
-                                            Spacing="8">
-                                            <Button
-                                                x:Name="btnRoutingSettingPage"
-                                                Classes="FluxToolButton Cyan"
-                                                Content="编辑路由" />
-                                            <Button
-                                                x:Name="btnDNSSettingPage"
-                                                Classes="FluxToolButton"
-                                                Content="DNS 设置" />
-                                        </StackPanel>
-                                    </Grid>
-
-                                    <Grid
-                                        Grid.Row="1"
-                                        Margin="0,18,0,0"
-                                        ColumnDefinitions="*,*,*">
-                                        <Border Classes="FluxMetricCard Green">
-                                            <StackPanel Spacing="8">
-                                                <TextBlock Classes="FluxTinyLabel" Text="国内网站" />
-                                                <TextBlock Classes="FluxMetricText" Text="直连优先" />
-                                            </StackPanel>
-                                        </Border>
-                                        <Border
-                                            Grid.Column="1"
-                                            Margin="12,0,0,0"
-                                            Classes="FluxMetricCard Cyan">
-                                            <StackPanel Spacing="8">
-                                                <TextBlock Classes="FluxTinyLabel" Text="国外网站" />
-                                                <TextBlock Classes="FluxMetricText" Text="当前节点代理" />
-                                            </StackPanel>
-                                        </Border>
-                                        <Border
-                                            Grid.Column="2"
-                                            Margin="12,0,0,0"
-                                            Classes="FluxMetricCard Orange">
-                                            <StackPanel Spacing="8">
-                                                <TextBlock Classes="FluxTinyLabel" Text="区域预设" />
-                                                <TextBlock Classes="FluxMetricText" Text="一键切换地区规则" />
-                                            </StackPanel>
-                                        </Border>
-                                    </Grid>
-
-                                    <Border
-                                        Grid.Row="2"
-                                        Margin="0,18,0,0"
-                                        Classes="FluxPanel FluxNodePanel">
-                                        <StackPanel Spacing="12">
-                                            <TextBlock Classes="FluxSectionTitle" Text="区域预设" />
-                                            <StackPanel Orientation="Horizontal" Spacing="8">
-                                                <Button
-                                                    x:Name="btnRegionalPresetDefaultPage"
-                                                    Classes="FluxToolButton Green"
-                                                    Content="默认" />
-                                                <Button
-                                                    x:Name="btnRegionalPresetRussiaPage"
-                                                    Classes="FluxToolButton"
-                                                    Content="Russia" />
-                                                <Button
-                                                    x:Name="btnRegionalPresetIranPage"
-                                                    Classes="FluxToolButton"
-                                                    Content="Iran" />
-                                            </StackPanel>
-                                            <TextBlock Classes="FluxHeroText" Text="复杂 geosite、geoip、domainStrategy 等仍在路由设置窗口中编辑。" />
-                                        </StackPanel>
-                                    </Border>
-                                </Grid>
-                            </Border>
-                        </TabItem>
-                        <TabItem x:Name="tabSettings" Header="设置">
-                            <Border Classes="FluxPanel FluxHomeShell">
-                                <Grid RowDefinitions="Auto,Auto,*">
-                                    <Grid ColumnDefinitions="*,Auto">
-                                        <StackPanel Spacing="6">
-                                            <TextBlock Classes="FluxHeroTitle FluxHomeTitle" Text="设置" />
-                                            <TextBlock Classes="FluxHeroText" Text="主设置页聚合高频入口；完整选项仍保留原有设置窗口，避免破坏配置结构。" />
-                                        </StackPanel>
-                                        <Button
-                                            x:Name="btnOptionSettingPage"
-                                            Grid.Column="1"
-                                            VerticalAlignment="Top"
-                                            Classes="FluxToolButton Cyan"
-                                            Content="打开完整设置" />
-                                    </Grid>
-
-                                    <Grid
-                                        Grid.Row="1"
-                                        Margin="0,18,0,0"
-                                        ColumnDefinitions="*,*,*">
-                                        <Border Classes="FluxMetricCard Cyan">
-                                            <StackPanel Spacing="8">
-                                                <TextBlock Classes="FluxTinyLabel" Text="基础选项" />
-                                                <TextBlock Classes="FluxMetricText" Text="端口、启动、语言、主题" />
-                                            </StackPanel>
-                                        </Border>
-                                        <Border
-                                            Grid.Column="1"
-                                            Margin="12,0,0,0"
-                                            Classes="FluxMetricCard Purple">
-                                            <StackPanel Spacing="8">
-                                                <TextBlock Classes="FluxTinyLabel" Text="快捷键" />
-                                                <TextBlock Classes="FluxMetricText" Text="全局热键设置" />
-                                            </StackPanel>
-                                        </Border>
-                                        <Border
-                                            Grid.Column="2"
-                                            Margin="12,0,0,0"
-                                            Classes="FluxMetricCard Green">
-                                            <StackPanel Spacing="8">
-                                                <TextBlock Classes="FluxTinyLabel" Text="维护" />
-                                                <TextBlock Classes="FluxMetricText" Text="备份、目录、统计清理" />
-                                            </StackPanel>
-                                        </Border>
-                                    </Grid>
-
-                                    <Border
-                                        Grid.Row="2"
-                                        Margin="0,18,0,0"
-                                        Classes="FluxPanel FluxNodePanel">
-                                        <StackPanel Spacing="12">
-                                            <TextBlock Classes="FluxSectionTitle" Text="常用设置入口" />
-                                            <WrapPanel>
-                                                <Button
-                                                    x:Name="btnHotkeySettingPage"
-                                                    Margin="0,0,8,8"
-                                                    Classes="FluxToolButton"
-                                                    Content="全局热键" />
-                                                <Button
-                                                    x:Name="btnBackupPage"
-                                                    Margin="0,0,8,8"
-                                                    Classes="FluxToolButton"
-                                                    Content="备份与恢复" />
-                                                <Button
-                                                    x:Name="btnOpenFolderPage"
-                                                    Margin="0,0,8,8"
-                                                    Classes="FluxToolButton"
-                                                    Content="打开配置目录" />
-                                                <Button
-                                                    x:Name="btnClearStatsPage"
-                                                    Margin="0,0,8,8"
-                                                    Classes="FluxToolButton"
-                                                    Content="清理统计" />
-                                            </WrapPanel>
-                                            <TextBlock Classes="FluxHeroText" Text="普通用户先看入口卡片，高级参数集中在弹窗中，避免主界面过载。" />
-                                        </StackPanel>
-                                    </Border>
-                                </Grid>
-                            </Border>
-                        </TabItem>
-                        <TabItem x:Name="tabMsgView2" Header="日志" />
-                        <TabItem x:Name="tabClashProxies2" Header="{x:Static resx:ResUI.TbProxies}" />
-                        <TabItem x:Name="tabClashConnections2" Header="{x:Static resx:ResUI.TbConnections}" />
-                    </TabControl>
-                    <Grid x:Name="gridMain2" IsVisible="False" />
-                </Grid>
+            <Grid
+                x:Name="gridMain1"
+                IsVisible="False"
+                RowDefinitions="1*,10,1*">
+                <ContentControl x:Name="tabProfiles1" Grid.Row="0" />
+                <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" />
+                <TabControl x:Name="tabMain1" Grid.Row="2" TabStripPlacement="Left">
+                    <TabItem x:Name="tabMsgView1" Header="{x:Static resx:ResUI.MsgInformationTitle}" />
+                    <TabItem x:Name="tabClashProxies1" Header="{x:Static resx:ResUI.TbProxies}" />
+                    <TabItem x:Name="tabClashConnections1" Header="{x:Static resx:ResUI.TbConnections}" />
+                </TabControl>
             </Grid>
         </Grid>
     </dialogHost:DialogHost>

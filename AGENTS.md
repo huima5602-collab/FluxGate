@@ -74,3 +74,4 @@ dotnet build .\v2rayN\v2rayN.sln -c Debug
 - `v0.2.0-ui-preview.2` 预览版目标是 1920 风格 Minimal Command 主界面，左侧主导航包含首页、节点、订阅、路由、设置、日志六页。
 - 六页主界面只重排入口和展示层；订阅、路由、设置、备份、日志等功能继续复用现有命令、弹窗和 ViewModel，不重写业务逻辑。
 - 顶部“免费节点”按钮使用系统默认浏览器打开 `https://lovable.dev/preview/lZwTAW5Wyepb3fplbbhlJLUZpa7z6kCO`，不得内嵌 WebView 或保存网页数据。
+- 验收 FluxGate 桌面端时，不要与用户本机已有的 v2rayN 同时运行；两者会争用系统代理、Core 端口和托盘状态，可能导致当前网络连接中断。需要人工 UI 验收时，应先由用户确认可以暂停 v2rayN，再启动 FluxGate。

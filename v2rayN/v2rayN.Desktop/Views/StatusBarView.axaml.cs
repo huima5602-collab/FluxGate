@@ -26,6 +26,7 @@ namespace v2rayN.Desktop.Views
 
             txtRunningServerDisplay.Tapped += TxtRunningServerDisplay_Tapped;
             txtRunningInfoDisplay.Tapped += TxtRunningServerDisplay_Tapped;
+            btnTestServerAvailability.Click += BtnTestServerAvailability_Click;
 
             this.WhenActivated(disposables =>
             {
@@ -97,6 +98,11 @@ namespace v2rayN.Desktop.Views
         }
 
         private void TxtRunningServerDisplay_Tapped(object? sender, Avalonia.Input.TappedEventArgs e)
+        {
+            ViewModel?.TestServerAvailability();
+        }
+
+        private void BtnTestServerAvailability_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
             ViewModel?.TestServerAvailability();
         }

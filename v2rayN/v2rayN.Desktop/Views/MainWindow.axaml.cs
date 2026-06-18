@@ -39,6 +39,13 @@ namespace v2rayN.Desktop.Views
             menuClose.Click += MenuClose_Click;
             btnFreeNodes.Click += BtnFreeNodes_Click;
             btnBackupPage.Click += MenuBackupAndRestore_Click;
+            btnTopClose.Click += MenuClose_Click;
+            btnNavHome.Click += (_, _) => SelectFluxPage(0);
+            btnNavNodes.Click += (_, _) => SelectFluxPage(1);
+            btnNavSubs.Click += (_, _) => SelectFluxPage(2);
+            btnNavRoutes.Click += (_, _) => SelectFluxPage(3);
+            btnNavSettings.Click += (_, _) => SelectFluxPage(4);
+            btnNavLogs.Click += (_, _) => SelectFluxPage(5);
 
             MessageBus.Current.Listen<string>(EMsgCommand.SendSnackMsg.ToString()).Subscribe(DelegateSnackMsg);
             ViewModel = new MainWindowViewModel(UpdateViewHandler);
@@ -73,6 +80,8 @@ namespace v2rayN.Desktop.Views
                 this.BindCommand(ViewModel, vm => vm.SubUpdateViaProxyCmd, v => v.menuSubUpdateViaProxy).DisposeWith(disposables);
                 this.BindCommand(ViewModel, vm => vm.SubGroupUpdateCmd, v => v.menuSubGroupUpdate).DisposeWith(disposables);
                 this.BindCommand(ViewModel, vm => vm.SubGroupUpdateViaProxyCmd, v => v.menuSubGroupUpdateViaProxy).DisposeWith(disposables);
+                this.BindCommand(ViewModel, vm => vm.SubUpdateCmd, v => v.btnTopSubUpdate).DisposeWith(disposables);
+                this.BindCommand(ViewModel, vm => vm.SubUpdateCmd, v => v.btnNodeSubUpdatePage).DisposeWith(disposables);
                 this.BindCommand(ViewModel, vm => vm.SubSettingCmd, v => v.btnSubSettingPage).DisposeWith(disposables);
                 this.BindCommand(ViewModel, vm => vm.SubUpdateCmd, v => v.btnSubUpdatePage).DisposeWith(disposables);
                 this.BindCommand(ViewModel, vm => vm.SubUpdateViaProxyCmd, v => v.btnSubUpdateViaProxyPage).DisposeWith(disposables);
@@ -89,12 +98,14 @@ namespace v2rayN.Desktop.Views
                 this.BindCommand(ViewModel, vm => vm.RegionalPresetDefaultCmd, v => v.menuRegionalPresetsDefault).DisposeWith(disposables);
                 this.BindCommand(ViewModel, vm => vm.RegionalPresetRussiaCmd, v => v.menuRegionalPresetsRussia).DisposeWith(disposables);
                 this.BindCommand(ViewModel, vm => vm.RegionalPresetIranCmd, v => v.menuRegionalPresetsIran).DisposeWith(disposables);
+                this.BindCommand(ViewModel, vm => vm.AddVlessServerCmd, v => v.btnAddVlessPage).DisposeWith(disposables);
                 this.BindCommand(ViewModel, vm => vm.OptionSettingCmd, v => v.btnOptionSettingPage).DisposeWith(disposables);
                 this.BindCommand(ViewModel, vm => vm.RoutingSettingCmd, v => v.btnRoutingSettingPage).DisposeWith(disposables);
                 this.BindCommand(ViewModel, vm => vm.DNSSettingCmd, v => v.btnDNSSettingPage).DisposeWith(disposables);
                 this.BindCommand(ViewModel, vm => vm.GlobalHotkeySettingCmd, v => v.btnHotkeySettingPage).DisposeWith(disposables);
                 this.BindCommand(ViewModel, vm => vm.ClearServerStatisticsCmd, v => v.btnClearStatsPage).DisposeWith(disposables);
                 this.BindCommand(ViewModel, vm => vm.OpenTheFileLocationCmd, v => v.btnOpenFolderPage).DisposeWith(disposables);
+                this.BindCommand(ViewModel, vm => vm.OpenTheFileLocationCmd, v => v.btnLogFolderPage).DisposeWith(disposables);
                 this.BindCommand(ViewModel, vm => vm.RegionalPresetDefaultCmd, v => v.btnRegionalPresetDefaultPage).DisposeWith(disposables);
                 this.BindCommand(ViewModel, vm => vm.RegionalPresetRussiaCmd, v => v.btnRegionalPresetRussiaPage).DisposeWith(disposables);
                 this.BindCommand(ViewModel, vm => vm.RegionalPresetIranCmd, v => v.btnRegionalPresetIranPage).DisposeWith(disposables);
@@ -102,9 +113,9 @@ namespace v2rayN.Desktop.Views
                 this.BindCommand(ViewModel, vm => vm.ReloadCmd, v => v.menuReload).DisposeWith(disposables);
                 this.OneWayBind(ViewModel, vm => vm.BlReloadEnabled, v => v.menuReload.IsEnabled).DisposeWith(disposables);
 
-                this.OneWayBind(ViewModel, vm => vm.ShowClashUI, v => v.tabClashProxies2.IsVisible).DisposeWith(disposables);
-                this.OneWayBind(ViewModel, vm => vm.ShowClashUI, v => v.tabClashConnections2.IsVisible).DisposeWith(disposables);
-                this.Bind(ViewModel, vm => vm.TabMainSelectedIndex, v => v.tabMain2.SelectedIndex).DisposeWith(disposables);
+                this.WhenAnyValue(v => v.ViewModel!.TabMainSelectedIndex)
+                    .Subscribe(SelectFluxPage)
+                    .DisposeWith(disposables);
             });
 
             this.Title = $"{Utils.GetVersion()}";
@@ -127,6 +138,7 @@ namespace v2rayN.Desktop.Views
             menuAddServerViaScan.IsVisible = false;
 
             RestoreUI();
+            SelectFluxPage(ViewModel.TabMainSelectedIndex);
             AddHelpMenuItem();
             MessageBus.Current.Listen<string>(EMsgCommand.AppExit.ToString()).Subscribe(StorageUI);
         }
@@ -315,6 +327,48 @@ namespace v2rayN.Desktop.Views
         private void BtnFreeNodes_Click(object? sender, RoutedEventArgs e)
         {
             ProcUtils.ProcessStart("https://lovable.dev/preview/lZwTAW5Wyepb3fplbbhlJLUZpa7z6kCO");
+        }
+
+        private void SelectFluxPage(int index)
+        {
+            if (index < 0 || index > 5)
+            {
+                index = 0;
+            }
+
+            pageHome.IsVisible = index == 0;
+            pageNodes.IsVisible = index == 1;
+            pageSubscription.IsVisible = index == 2;
+            pageRouting.IsVisible = index == 3;
+            pageSettings.IsVisible = index == 4;
+            pageLogs.IsVisible = index == 5;
+
+            SetNavActive(btnNavHome, index == 0);
+            SetNavActive(btnNavNodes, index == 1);
+            SetNavActive(btnNavSubs, index == 2);
+            SetNavActive(btnNavRoutes, index == 3);
+            SetNavActive(btnNavSettings, index == 4);
+            SetNavActive(btnNavLogs, index == 5);
+
+            if (ViewModel != null && ViewModel.TabMainSelectedIndex != index)
+            {
+                ViewModel.TabMainSelectedIndex = index;
+            }
+        }
+
+        private static void SetNavActive(Button button, bool active)
+        {
+            if (active)
+            {
+                if (!button.Classes.Contains("Active"))
+                {
+                    button.Classes.Add("Active");
+                }
+            }
+            else
+            {
+                button.Classes.Remove("Active");
+            }
         }
 
         private void menuSettingsSetUWP_Click(object? sender, RoutedEventArgs e)
