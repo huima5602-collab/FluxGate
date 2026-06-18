@@ -31,6 +31,7 @@ namespace v2rayN.Desktop.Views
 
             menuSelectAll.Click += menuSelectAll_Click;
             btnAutofitColumnWidth.Click += BtnAutofitColumnWidth_Click;
+            menuToolbarAutofitColumnWidth.Click += BtnAutofitColumnWidth_Click;
             txtServerFilter.KeyDown += TxtServerFilter_KeyDown;
             lstProfiles.KeyDown += LstProfiles_KeyDown;
             lstProfiles.SelectionChanged += lstProfiles_SelectionChanged;
@@ -82,7 +83,10 @@ namespace v2rayN.Desktop.Views
                 //servers ping
                 this.BindCommand(ViewModel, vm => vm.MixedTestServerCmd, v => v.btnMixedTestServer).DisposeWith(disposables);
                 this.BindCommand(ViewModel, vm => vm.SortServerResultCmd, v => v.btnSortServerResult).DisposeWith(disposables);
-                this.BindCommand(ViewModel, vm => vm.RemoveInvalidServerResultCmd, v => v.btnRemoveInvalidServerResult).DisposeWith(disposables);
+                this.BindCommand(ViewModel, vm => vm.TcpingServerCmd, v => v.menuToolbarTcpingServer).DisposeWith(disposables);
+                this.BindCommand(ViewModel, vm => vm.RealPingServerCmd, v => v.menuToolbarRealPingServer).DisposeWith(disposables);
+                this.BindCommand(ViewModel, vm => vm.SpeedServerCmd, v => v.menuToolbarSpeedServer).DisposeWith(disposables);
+                this.BindCommand(ViewModel, vm => vm.RemoveInvalidServerResultCmd, v => v.menuToolbarRemoveInvalidServerResult).DisposeWith(disposables);
                 this.BindCommand(ViewModel, vm => vm.MixedTestServerCmd, v => v.menuMixedTestServer).DisposeWith(disposables);
                 this.BindCommand(ViewModel, vm => vm.TcpingServerCmd, v => v.menuTcpingServer).DisposeWith(disposables);
                 this.BindCommand(ViewModel, vm => vm.RealPingServerCmd, v => v.menuRealPingServer).DisposeWith(disposables);

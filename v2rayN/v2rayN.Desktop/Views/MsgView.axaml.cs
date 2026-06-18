@@ -14,6 +14,8 @@ namespace v2rayN.Desktop.Views
             InitializeComponent();
 
             ViewModel = new MsgViewModel(UpdateViewHandler);
+            btnCopy.Click += menuMsgViewCopyAll_Click;
+            btnClear.Click += menuMsgViewClear_Click;
 
             this.WhenActivated(disposables =>
             {

@@ -83,10 +83,16 @@
                             x:Name="btnSortServerResult"
                             Classes="FluxToolButton"
                             Content="排序" />
-                        <Button
-                            x:Name="btnRemoveInvalidServerResult"
-                            Classes="FluxToolButton Purple"
-                            Content="移除无效" />
+                        <Menu Classes="FluxToolbarMenu">
+                            <MenuItem Header="更多">
+                                <MenuItem x:Name="menuToolbarTcpingServer" Header="{x:Static resx:ResUI.menuTcpingServer}" />
+                                <MenuItem x:Name="menuToolbarRealPingServer" Header="{x:Static resx:ResUI.menuRealPingServer}" />
+                                <MenuItem x:Name="menuToolbarSpeedServer" Header="{x:Static resx:ResUI.menuSpeedServer}" />
+                                <Separator />
+                                <MenuItem x:Name="menuToolbarRemoveInvalidServerResult" Header="{x:Static resx:ResUI.menuRemoveInvalidServerResult}" />
+                                <MenuItem x:Name="menuToolbarAutofitColumnWidth" Header="{x:Static resx:ResUI.menuProfileAutofitColumnWidth}" />
+                            </MenuItem>
+                        </Menu>
                         <TextBox
                             x:Name="txtServerFilter"
                             Width="240"

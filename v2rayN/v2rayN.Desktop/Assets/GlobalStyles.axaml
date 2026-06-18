@@ -299,6 +299,24 @@
         <Setter Property="FontWeight" Value="SemiBold" />
     </Style>
 
+    <Style Selector="Menu.FluxToolbarMenu">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{DynamicResource FluxText}" />
+    </Style>
+
+    <Style Selector="Menu.FluxToolbarMenu > MenuItem">
+        <Setter Property="MinWidth" Value="86" />
+        <Setter Property="Height" Value="32" />
+        <Setter Property="Padding" Value="14,0" />
+        <Setter Property="Foreground" Value="{DynamicResource FluxText}" />
+        <Setter Property="Background" Value="#22163E" />
+        <Setter Property="BorderBrush" Value="{DynamicResource FluxPurple}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="16" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+    </Style>
+
     <Style Selector="TabControl.FluxWorkspaceTabs">
         <Setter Property="Background" Value="Transparent" />
     </Style>
