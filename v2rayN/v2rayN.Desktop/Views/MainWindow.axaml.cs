@@ -37,6 +37,8 @@ namespace v2rayN.Desktop.Views
             menuCheckUpdate.Click += MenuCheckUpdate_Click;
             menuBackupAndRestore.Click += MenuBackupAndRestore_Click;
             menuClose.Click += MenuClose_Click;
+            btnFreeNodes.Click += BtnFreeNodes_Click;
+            btnBackupPage.Click += MenuBackupAndRestore_Click;
 
             MessageBus.Current.Listen<string>(EMsgCommand.SendSnackMsg.ToString()).Subscribe(DelegateSnackMsg);
             ViewModel = new MainWindowViewModel(UpdateViewHandler);
@@ -71,6 +73,10 @@ namespace v2rayN.Desktop.Views
                 this.BindCommand(ViewModel, vm => vm.SubUpdateViaProxyCmd, v => v.menuSubUpdateViaProxy).DisposeWith(disposables);
                 this.BindCommand(ViewModel, vm => vm.SubGroupUpdateCmd, v => v.menuSubGroupUpdate).DisposeWith(disposables);
                 this.BindCommand(ViewModel, vm => vm.SubGroupUpdateViaProxyCmd, v => v.menuSubGroupUpdateViaProxy).DisposeWith(disposables);
+                this.BindCommand(ViewModel, vm => vm.SubSettingCmd, v => v.btnSubSettingPage).DisposeWith(disposables);
+                this.BindCommand(ViewModel, vm => vm.SubUpdateCmd, v => v.btnSubUpdatePage).DisposeWith(disposables);
+                this.BindCommand(ViewModel, vm => vm.SubUpdateViaProxyCmd, v => v.btnSubUpdateViaProxyPage).DisposeWith(disposables);
+                this.BindCommand(ViewModel, vm => vm.SubGroupUpdateCmd, v => v.btnSubGroupUpdatePage).DisposeWith(disposables);
 
                 //setting
                 this.BindCommand(ViewModel, vm => vm.OptionSettingCmd, v => v.menuOptionSetting).DisposeWith(disposables);
@@ -83,6 +89,15 @@ namespace v2rayN.Desktop.Views
                 this.BindCommand(ViewModel, vm => vm.RegionalPresetDefaultCmd, v => v.menuRegionalPresetsDefault).DisposeWith(disposables);
                 this.BindCommand(ViewModel, vm => vm.RegionalPresetRussiaCmd, v => v.menuRegionalPresetsRussia).DisposeWith(disposables);
                 this.BindCommand(ViewModel, vm => vm.RegionalPresetIranCmd, v => v.menuRegionalPresetsIran).DisposeWith(disposables);
+                this.BindCommand(ViewModel, vm => vm.OptionSettingCmd, v => v.btnOptionSettingPage).DisposeWith(disposables);
+                this.BindCommand(ViewModel, vm => vm.RoutingSettingCmd, v => v.btnRoutingSettingPage).DisposeWith(disposables);
+                this.BindCommand(ViewModel, vm => vm.DNSSettingCmd, v => v.btnDNSSettingPage).DisposeWith(disposables);
+                this.BindCommand(ViewModel, vm => vm.GlobalHotkeySettingCmd, v => v.btnHotkeySettingPage).DisposeWith(disposables);
+                this.BindCommand(ViewModel, vm => vm.ClearServerStatisticsCmd, v => v.btnClearStatsPage).DisposeWith(disposables);
+                this.BindCommand(ViewModel, vm => vm.OpenTheFileLocationCmd, v => v.btnOpenFolderPage).DisposeWith(disposables);
+                this.BindCommand(ViewModel, vm => vm.RegionalPresetDefaultCmd, v => v.btnRegionalPresetDefaultPage).DisposeWith(disposables);
+                this.BindCommand(ViewModel, vm => vm.RegionalPresetRussiaCmd, v => v.btnRegionalPresetRussiaPage).DisposeWith(disposables);
+                this.BindCommand(ViewModel, vm => vm.RegionalPresetIranCmd, v => v.btnRegionalPresetIranPage).DisposeWith(disposables);
 
                 this.BindCommand(ViewModel, vm => vm.ReloadCmd, v => v.menuReload).DisposeWith(disposables);
                 this.OneWayBind(ViewModel, vm => vm.BlReloadEnabled, v => v.menuReload.IsEnabled).DisposeWith(disposables);
@@ -295,6 +310,11 @@ namespace v2rayN.Desktop.Views
         private void menuPromotion_Click(object? sender, RoutedEventArgs e)
         {
             ProcUtils.ProcessStart($"{Utils.Base64Decode(Global.PromotionUrl)}?t={DateTime.Now.Ticks}");
+        }
+
+        private void BtnFreeNodes_Click(object? sender, RoutedEventArgs e)
+        {
+            ProcUtils.ProcessStart("https://lovable.dev/preview/lZwTAW5Wyepb3fplbbhlJLUZpa7z6kCO");
         }
 
         private void menuSettingsSetUWP_Click(object? sender, RoutedEventArgs e)

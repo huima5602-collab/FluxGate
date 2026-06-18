@@ -63,3 +63,7 @@ Browser performance validation should use a real browser with the same node and 
 ## UI Preview Branch
 
 The `codex/ui-redesign` branch contains the first FluxGate UI preview. It keeps the validated proxy behavior from `v0.1.0-alpha.8` and focuses on the Avalonia shell: colorful dark theme, brand header, simplified home dashboard, refreshed node toolbar, and retained advanced menus.
+
+The `v0.2.0-ui-preview.2` preview extends that direction into a 1920-style Minimal Command layout. The main Avalonia shell now presents six left-side pages: home, nodes, subscriptions, routing, settings, and logs. Subscription, routing, settings, and maintenance actions continue to call the existing v2rayN/FluxGate commands and dialogs instead of replacing the underlying business logic.
+
+The top bar includes a `免费节点` entry that opens `https://lovable.dev/preview/lZwTAW5Wyepb3fplbbhlJLUZpa7z6kCO` in the system browser. The page is external and is not embedded in FluxGate.

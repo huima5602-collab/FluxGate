@@ -6,69 +6,90 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:resx="clr-namespace:ServiceLib.Resx;assembly=ServiceLib"
     xmlns:vms="clr-namespace:ServiceLib.ViewModels;assembly=ServiceLib"
-    d:DesignHeight="450"
-    d:DesignWidth="800"
+    d:DesignHeight="650"
+    d:DesignWidth="1180"
     x:DataType="vms:StatusBarViewModel"
     mc:Ignorable="d">
-    <Grid RowDefinitions="Auto,Auto,*">
-        <Grid ColumnDefinitions="2*,*,*">
-            <Border Classes="FluxPanel">
-                <StackPanel Spacing="10">
-                    <TextBlock Classes="FluxSectionTitle" Text="当前节点" />
+    <Grid RowDefinitions="2*,Auto,3*">
+        <Border Classes="FluxPanel FluxCommandPanel">
+            <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,*">
+                <StackPanel Spacing="6">
+                    <TextBlock Classes="FluxSectionTitle" Text="Minimal Command" />
                     <TextBlock
                         x:Name="txtRunningServerDisplay"
                         Classes="FluxHeroTitle"
-                        FontSize="20"
+                        FontSize="24"
                         TextWrapping="Wrap" />
                     <TextBlock
                         x:Name="txtRunningInfoDisplay"
-                        Classes="FluxSubtle"
-                        TextWrapping="Wrap" />
-                </StackPanel>
-            </Border>
-
-            <Border
-                Grid.Column="1"
-                Margin="14,0,0,0"
-                Classes="FluxPanel">
-                <StackPanel Spacing="10">
-                    <TextBlock Classes="FluxSectionTitle" Text="实时代理" />
-                    <TextBlock
-                        x:Name="txtSpeedProxyDisplay"
-                        Foreground="{DynamicResource FluxGreen}"
-                        FontSize="18"
-                        FontWeight="SemiBold" />
-                    <TextBlock
-                        x:Name="txtSpeedDirectDisplay"
-                        Foreground="{DynamicResource FluxOrange}"
-                        FontSize="14" />
-                </StackPanel>
-            </Border>
-
-            <Border
-                Grid.Column="2"
-                Margin="14,0,0,0"
-                Classes="FluxPanel">
-                <StackPanel Spacing="10">
-                    <TextBlock Classes="FluxSectionTitle" Text="监听端口" />
-                    <TextBlock
-                        x:Name="txtInboundDisplay"
+                        Classes="FluxHeroText"
                         Foreground="{DynamicResource FluxCyan}"
-                        FontSize="16"
-                        FontWeight="SemiBold" />
-                    <TextBlock
-                        x:Name="txtInboundLanDisplay"
-                        Classes="FluxSubtle"
                         TextWrapping="Wrap" />
                 </StackPanel>
-            </Border>
-        </Grid>
+
+                <Border Grid.Column="1" Classes="FluxOnBadge">
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        FontSize="17"
+                        FontWeight="Bold"
+                        Foreground="#03120C"
+                        Text="ON" />
+                </Border>
+
+                <Grid
+                    Grid.Row="1"
+                    Grid.ColumnSpan="2"
+                    Margin="0,24,0,0"
+                    ColumnDefinitions="1.05*,1.05*,1.05*,1.05*">
+                    <Border Classes="FluxMetricCard Cyan">
+                        <StackPanel Spacing="8">
+                            <TextBlock Classes="FluxTinyLabel" Text="系统代理" />
+                            <TextBlock Classes="FluxMetricText" Text="{x:Static resx:ResUI.menuSystemproxy}" />
+                        </StackPanel>
+                    </Border>
+
+                    <Border
+                        Grid.Column="1"
+                        Margin="12,0,0,0"
+                        Classes="FluxMetricCard Orange">
+                        <StackPanel Spacing="8">
+                            <TextBlock Classes="FluxTinyLabel" Text="TUN" />
+                            <TextBlock Classes="FluxMetricText" Text="{x:Static resx:ResUI.TbEnableTunAs}" />
+                        </StackPanel>
+                    </Border>
+
+                    <Border
+                        Grid.Column="2"
+                        Margin="12,0,0,0"
+                        Classes="FluxMetricCard Green">
+                        <StackPanel Spacing="8">
+                            <TextBlock Classes="FluxTinyLabel" Text="监听端口" />
+                            <TextBlock
+                                x:Name="txtInboundDisplay"
+                                Classes="FluxMetricText"
+                                TextWrapping="Wrap" />
+                        </StackPanel>
+                    </Border>
+
+                    <Border
+                        Grid.Column="3"
+                        Margin="12,0,0,0"
+                        Classes="FluxMetricCard Purple">
+                        <StackPanel Spacing="8">
+                            <TextBlock Classes="FluxTinyLabel" Text="Core" />
+                            <TextBlock Classes="FluxMetricText" Text="核心托管" />
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </Grid>
+        </Border>
 
         <Grid
             Grid.Row="1"
             Margin="0,14,0,0"
-            ColumnDefinitions="*,*,Auto">
-            <Border Classes="FluxPanel">
+            ColumnDefinitions="1.25*,1.25*,Auto">
+            <Border Classes="FluxPanel FluxControlCard">
                 <StackPanel Spacing="8">
                     <TextBlock Classes="FluxSectionTitle" Text="{x:Static resx:ResUI.menuSystemproxy}" />
                     <ComboBox
@@ -85,8 +106,8 @@
 
             <Border
                 Grid.Column="1"
-                Margin="14,0,0,0"
-                Classes="FluxPanel">
+                Margin="12,0,0,0"
+                Classes="FluxPanel FluxControlCard">
                 <StackPanel Spacing="8">
                     <TextBlock Classes="FluxSectionTitle" Text="{x:Static resx:ResUI.menuRouting}" />
                     <ComboBox
@@ -101,8 +122,8 @@
             <Border
                 x:Name="spEnableTun"
                 Grid.Column="2"
-                Margin="14,0,0,0"
-                Classes="FluxPanel">
+                Margin="12,0,0,0"
+                Classes="FluxPanel FluxControlCard">
                 <StackPanel Spacing="8">
                     <TextBlock Classes="FluxSectionTitle" Text="{x:Static resx:ResUI.TbEnableTunAs}" />
                     <ToggleSwitch
@@ -113,16 +134,78 @@
             </Border>
         </Grid>
 
-        <Border
+        <Grid
             Grid.Row="2"
             Margin="0,14,0,0"
-            Classes="FluxPanel">
-            <StackPanel Spacing="10">
-                <TextBlock Classes="FluxSectionTitle" Text="快速提示" />
-                <TextBlock
-                    Classes="FluxHeroText"
-                    Text="点击当前节点卡片可以重新测试可用性；系统代理和路由模式在这里直接切换。更多协议、订阅、备份和 Core 更新保留在顶部高级菜单。" />
-            </StackPanel>
-        </Border>
+            ColumnDefinitions="0.9*,2.2*">
+            <Border Classes="FluxPanel FluxTrafficPanel">
+                <Grid RowDefinitions="Auto,*,Auto">
+                    <TextBlock Classes="FluxSectionTitle" Text="实时代理" />
+                    <StackPanel Grid.Row="1" VerticalAlignment="Center" Spacing="8">
+                        <TextBlock
+                            x:Name="txtSpeedProxyDisplay"
+                            Foreground="{DynamicResource FluxGreen}"
+                            FontSize="24"
+                            FontWeight="SemiBold" />
+                        <TextBlock
+                            x:Name="txtSpeedDirectDisplay"
+                            Foreground="{DynamicResource FluxOrange}"
+                            FontSize="18"
+                            FontWeight="SemiBold" />
+                    </StackPanel>
+                    <Grid
+                        Grid.Row="2"
+                        Height="42"
+                        ColumnDefinitions="*,*,*,*,*,*,*,*,*,*,*,*"
+                        VerticalAlignment="Bottom">
+                        <Border Grid.Column="0" Height="14" Classes="FluxSignalBar" VerticalAlignment="Bottom" />
+                        <Border Grid.Column="1" Height="24" Margin="4,0,0,0" Classes="FluxSignalBar" VerticalAlignment="Bottom" />
+                        <Border Grid.Column="2" Height="18" Margin="4,0,0,0" Classes="FluxSignalBar" VerticalAlignment="Bottom" />
+                        <Border Grid.Column="3" Height="31" Margin="4,0,0,0" Classes="FluxSignalBar" VerticalAlignment="Bottom" />
+                        <Border Grid.Column="4" Height="21" Margin="4,0,0,0" Classes="FluxSignalBar" VerticalAlignment="Bottom" />
+                        <Border Grid.Column="5" Height="38" Margin="4,0,0,0" Classes="FluxSignalBar" VerticalAlignment="Bottom" />
+                        <Border Grid.Column="6" Height="26" Margin="4,0,0,0" Classes="FluxSignalBar" VerticalAlignment="Bottom" />
+                        <Border Grid.Column="7" Height="34" Margin="4,0,0,0" Classes="FluxSignalBar" VerticalAlignment="Bottom" />
+                        <Border Grid.Column="8" Height="19" Margin="4,0,0,0" Classes="FluxSignalBar" VerticalAlignment="Bottom" />
+                        <Border Grid.Column="9" Height="36" Margin="4,0,0,0" Classes="FluxSignalBar" VerticalAlignment="Bottom" />
+                        <Border Grid.Column="10" Height="28" Margin="4,0,0,0" Classes="FluxSignalBar" VerticalAlignment="Bottom" />
+                        <Border Grid.Column="11" Height="41" Margin="4,0,0,0" Classes="FluxSignalBar" VerticalAlignment="Bottom" />
+                    </Grid>
+                </Grid>
+            </Border>
+
+            <Border
+                Grid.Column="1"
+                Margin="12,0,0,0"
+                Classes="FluxPanel FluxNodePanel">
+                <Grid RowDefinitions="Auto,*" ColumnDefinitions="*,Auto">
+                    <StackPanel Spacing="6">
+                        <TextBlock Classes="FluxSectionTitle" Text="当前线路" />
+                        <TextBlock
+                            Classes="FluxHeroTitle"
+                            FontSize="20"
+                            Text="{Binding RunningServerDisplay}"
+                            TextWrapping="Wrap" />
+                        <TextBlock
+                            Classes="FluxHeroText"
+                            Text="{Binding RunningInfoDisplay}" />
+                    </StackPanel>
+                    <Border Grid.Column="1" Classes="FluxMiniAction">
+                        <TextBlock
+                            FontSize="12"
+                            Foreground="{DynamicResource FluxText}"
+                            Text="点此测速" />
+                    </Border>
+                    <TextBlock
+                        x:Name="txtInboundLanDisplay"
+                        Grid.Row="1"
+                        Grid.ColumnSpan="2"
+                        Margin="0,18,0,0"
+                        Classes="FluxHeroText"
+                        VerticalAlignment="Bottom"
+                        TextWrapping="Wrap" />
+                </Grid>
+            </Border>
+        </Grid>
     </Grid>
 </UserControl>

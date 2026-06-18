@@ -40,6 +40,10 @@
         <Setter Property="FontWeight" Value="SemiBold" />
     </Style>
 
+    <Style Selector="TextBlock.FluxHeroTitle.FluxHomeTitle">
+        <Setter Property="FontSize" Value="22" />
+    </Style>
+
     <Style Selector="TextBlock.FluxHeroText">
         <Setter Property="Foreground" Value="{DynamicResource FluxTextMuted}" />
         <Setter Property="FontSize" Value="13" />
@@ -61,6 +65,92 @@
         <Setter Property="Padding" Value="18" />
     </Style>
 
+    <Style Selector="Border.FluxPanel.FluxHomeShell">
+        <Setter Property="Padding" Value="16" />
+    </Style>
+
+    <Style Selector="Border.FluxPanel.FluxCommandPanel">
+        <Setter Property="MinHeight" Value="210" />
+        <Setter Property="Padding" Value="24,22" />
+    </Style>
+
+    <Style Selector="Border.FluxPanel.FluxControlCard">
+        <Setter Property="MinHeight" Value="92" />
+        <Setter Property="Padding" Value="16,14" />
+    </Style>
+
+    <Style Selector="Border.FluxPanel.FluxTrafficPanel">
+        <Setter Property="MinHeight" Value="150" />
+        <Setter Property="Padding" Value="18,16" />
+    </Style>
+
+    <Style Selector="Border.FluxPanel.FluxNodePanel">
+        <Setter Property="MinHeight" Value="150" />
+        <Setter Property="Padding" Value="20,16" />
+        <Setter Property="BorderBrush" Value="{DynamicResource FluxPurple}" />
+    </Style>
+
+    <Style Selector="Border.FluxOnBadge">
+        <Setter Property="Width" Value="92" />
+        <Setter Property="Height" Value="92" />
+        <Setter Property="CornerRadius" Value="92" />
+        <Setter Property="Background" Value="{DynamicResource FluxGreen}" />
+        <Setter Property="Margin" Value="24,0,16,0" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+
+    <Style Selector="Border.FluxMetricCard">
+        <Setter Property="MinHeight" Value="58" />
+        <Setter Property="Padding" Value="13,10" />
+        <Setter Property="CornerRadius" Value="9" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Background" Value="{DynamicResource FluxPanelBgAlt}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource FluxBorder}" />
+    </Style>
+
+    <Style Selector="Border.FluxMetricCard.Cyan">
+        <Setter Property="BorderBrush" Value="{DynamicResource FluxCyan}" />
+    </Style>
+
+    <Style Selector="Border.FluxMetricCard.Orange">
+        <Setter Property="BorderBrush" Value="{DynamicResource FluxOrange}" />
+    </Style>
+
+    <Style Selector="Border.FluxMetricCard.Green">
+        <Setter Property="BorderBrush" Value="{DynamicResource FluxGreen}" />
+    </Style>
+
+    <Style Selector="Border.FluxMetricCard.Purple">
+        <Setter Property="BorderBrush" Value="{DynamicResource FluxPurple}" />
+    </Style>
+
+    <Style Selector="TextBlock.FluxTinyLabel">
+        <Setter Property="Foreground" Value="{DynamicResource FluxCyan}" />
+        <Setter Property="FontSize" Value="11" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+    </Style>
+
+    <Style Selector="TextBlock.FluxMetricText">
+        <Setter Property="Foreground" Value="{DynamicResource FluxText}" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+    </Style>
+
+    <Style Selector="Border.FluxSignalBar">
+        <Setter Property="Background" Value="{DynamicResource FluxCyan}" />
+        <Setter Property="CornerRadius" Value="2" />
+        <Setter Property="Opacity" Value="0.85" />
+    </Style>
+
+    <Style Selector="Border.FluxMiniAction">
+        <Setter Property="Padding" Value="14,6" />
+        <Setter Property="CornerRadius" Value="14" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="{DynamicResource FluxPurple}" />
+        <Setter Property="Background" Value="#22163E" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+    </Style>
+
     <Style Selector="Border.FluxPill">
         <Setter Property="Background" Value="#1A2A45" />
         <Setter Property="BorderBrush" Value="{DynamicResource FluxBorder}" />
@@ -75,6 +165,35 @@
 
     <Style Selector="Border.FluxPill.Cyan">
         <Setter Property="BorderBrush" Value="{DynamicResource FluxCyan}" />
+    </Style>
+
+    <Style Selector="Button.FluxToolButton">
+        <Setter Property="MinWidth" Value="86" />
+        <Setter Property="Height" Value="32" />
+        <Setter Property="Padding" Value="14,0" />
+        <Setter Property="Foreground" Value="{DynamicResource FluxText}" />
+        <Setter Property="Background" Value="{DynamicResource FluxPanelBgAlt}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource FluxBorder}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="16" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+    </Style>
+
+    <Style Selector="Button.FluxToolButton.Cyan">
+        <Setter Property="Foreground" Value="{DynamicResource FluxCyan}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource FluxCyan}" />
+    </Style>
+
+    <Style Selector="Button.FluxToolButton.Green">
+        <Setter Property="Foreground" Value="{DynamicResource FluxGreen}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource FluxGreen}" />
+    </Style>
+
+    <Style Selector="Button.FluxToolButton.Purple">
+        <Setter Property="Foreground" Value="{DynamicResource FluxText}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource FluxPurple}" />
+        <Setter Property="Background" Value="#22163E" />
     </Style>
 
     <Style Selector="Border.FluxStatusDot">
@@ -96,8 +215,9 @@
 
     <Style Selector="TabControl.FluxWorkspaceTabs TabItem">
         <Setter Property="Foreground" Value="{DynamicResource FluxTextMuted}" />
-        <Setter Property="Padding" Value="12,10" />
-        <Setter Property="Margin" Value="0,2" />
+        <Setter Property="Padding" Value="11,9" />
+        <Setter Property="Margin" Value="0,1" />
+        <Setter Property="MinHeight" Value="34" />
     </Style>
 
     <Style Selector="TabControl.FluxWorkspaceTabs TabItem:selected">

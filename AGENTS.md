@@ -71,3 +71,6 @@ dotnet build .\v2rayN\v2rayN.sln -c Debug
 - 性能验收以真实浏览器打开 Google/YouTube 等网页的体感和加载耗时为准，不以应用内测速数字为准。
 - `codex/ui-redesign` 分支用于 FluxGate UI 预览改造，目标是极简小白模式加鲜明科技感视觉；该分支不改代理核心、协议逻辑、订阅解析或已验证的打包路径。
 - 当前 UI 预览先改主窗口、首页状态卡片、节点页工具条和全局色板；设置、订阅、路由等高级弹窗仍沿用原功能入口。
+- `v0.2.0-ui-preview.2` 预览版目标是 1920 风格 Minimal Command 主界面，左侧主导航包含首页、节点、订阅、路由、设置、日志六页。
+- 六页主界面只重排入口和展示层；订阅、路由、设置、备份、日志等功能继续复用现有命令、弹窗和 ViewModel，不重写业务逻辑。
+- 顶部“免费节点”按钮使用系统默认浏览器打开 `https://lovable.dev/preview/lZwTAW5Wyepb3fplbbhlJLUZpa7z6kCO`，不得内嵌 WebView 或保存网页数据。
