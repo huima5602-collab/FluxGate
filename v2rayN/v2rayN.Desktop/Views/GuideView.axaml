@@ -1,0 +1,34 @@
+<UserControl
+    x:Class="v2rayN.Desktop.Views.GuideView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ScrollViewer>
+        <StackPanel Spacing="18">
+            <StackPanel Spacing="8">
+                <TextBlock Classes="FluxPageTitle" Text="新手指南" />
+                <TextBlock Classes="FluxHeroText" Text="用最少步骤理解 FluxGate 的基本操作、常见名词和排障顺序。" />
+            </StackPanel>
+
+            <Border Classes="FluxPanel FluxNodePanel">
+                <StackPanel Spacing="10">
+                    <TextBlock Classes="FluxSectionTitle" Text="第一次使用" />
+                    <TextBlock Classes="FluxHeroText" Text="1. 添加订阅或导入节点&#x0a;2. 刷新订阅&#x0a;3. 选择一个节点&#x0a;4. 开启系统代理&#x0a;5. 打开浏览器测试网页" />
+                </StackPanel>
+            </Border>
+
+            <Border Classes="FluxPanel FluxNodePanel">
+                <StackPanel Spacing="10">
+                    <TextBlock Classes="FluxSectionTitle" Text="什么时候用哪种模式" />
+                    <TextBlock Classes="FluxHeroText" Text="只是上网页：系统代理 + 自动/规则模式。&#x0a;某个软件不能用：先尝试手动填写首页代理端口。&#x0a;软件不支持系统代理和手动代理：再考虑 TUN 模式。&#x0a;所有网页打不开：先换节点、刷新订阅、看日志，不要先乱改高级设置。" />
+                </StackPanel>
+            </Border>
+
+            <Border Classes="FluxPanel FluxNodePanel">
+                <StackPanel Spacing="10">
+                    <TextBlock Classes="FluxSectionTitle" Text="常见名词" />
+                    <TextBlock Classes="FluxHeroText" Text="节点：一条代理线路。&#x0a;订阅：一组在线节点列表。&#x0a;系统代理：让支持系统代理的软件走 FluxGate。&#x0a;代理端口：给其他软件手动填写的本机入口，例如 127.0.0.1:10808。&#x0a;TUN 模式：更底层的接管方式，适合不支持系统代理的软件。&#x0a;Core：真正负责代理连接的底层程序。&#x0a;日志：排查连接、订阅和 Core 错误时使用。" />
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
