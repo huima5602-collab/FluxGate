@@ -57,6 +57,10 @@
                             Classes="FluxNavButton"
                             Content="订阅" />
                         <Button
+                            x:Name="btnNavFreeNodes"
+                            Classes="FluxNavButton"
+                            Content="免费" />
+                        <Button
                             x:Name="btnNavRoutes"
                             Classes="FluxNavButton"
                             Content="路由" />
@@ -68,6 +72,10 @@
                             x:Name="btnNavLogs"
                             Classes="FluxNavButton"
                             Content="日志" />
+                        <Button
+                            x:Name="btnNavGuide"
+                            Classes="FluxNavButton"
+                            Content="指南" />
                     </StackPanel>
                 </StackPanel>
             </Border>
@@ -172,7 +180,14 @@
                     <Border
                         x:Name="pageHome"
                         Classes="FluxPanel FluxMainPanel">
-                        <view:StatusBarView />
+                        <Grid RowDefinitions="Auto,*">
+                            <StackPanel Spacing="6">
+                                <TextBlock Classes="FluxSectionTitle" Text="Minimal Command" />
+                                <TextBlock Classes="FluxHeroTitle" Text="代理已连接" />
+                                <TextBlock Classes="FluxHeroText" Text="节点、系统代理、路由和入口端口集中监控" />
+                            </StackPanel>
+                            <view:StatusBarView Grid.Row="1" Margin="0,18,0,0" />
+                        </Grid>
                     </Border>
 
                     <Border
@@ -284,6 +299,13 @@
                                 </Grid>
                             </Border>
                         </Grid>
+                    </Border>
+
+                    <Border
+                        x:Name="pageFreeNodes"
+                        Classes="FluxPanel FluxWorkspace"
+                        IsVisible="False">
+                        <ContentControl x:Name="conFreeNodes" />
                     </Border>
 
                     <Border
@@ -526,6 +548,13 @@
                                 Grid.Row="2"
                                 Margin="0,18,0,0" />
                         </Grid>
+                    </Border>
+
+                    <Border
+                        x:Name="pageGuide"
+                        Classes="FluxPanel FluxWorkspace"
+                        IsVisible="False">
+                        <ContentControl x:Name="conGuide" />
                     </Border>
 
                     <ContentControl
