@@ -1,0 +1,26 @@
+<UserControl
+    x:Class="v2rayN.Desktop.Views.FreeNodesView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid RowDefinitions="Auto,*">
+        <Grid ColumnDefinitions="*,Auto">
+            <StackPanel Spacing="8">
+                <TextBlock Classes="FluxPageTitle" Text="免费节点" />
+                <TextBlock Classes="FluxHeroText" Text="这里是免费节点中心。内嵌 WebView 需要单独验证依赖和打包影响；当前先保留可靠的浏览器打开入口。" />
+            </StackPanel>
+            <Button
+                x:Name="btnOpenFreeNodes"
+                Grid.Column="1"
+                Classes="FluxToolButton Green"
+                Content="在浏览器打开" />
+        </Grid>
+
+        <Border Grid.Row="1" Margin="0,20,0,0" Classes="FluxPanel FluxNodePanel">
+            <StackPanel Spacing="12">
+                <TextBlock Classes="FluxSectionTitle" Text="WebView 集成待评估" />
+                <TextBlock Classes="FluxHeroText" Text="目标页面：https://lovable.dev/preview/lZwTAW5Wyepb3fplbbhlJLUZpa7z6kCO" />
+                <TextBlock Classes="FluxHeroText" Text="要求：不保存网页 Cookie，不注入脚本，不读取网页数据；加载失败时必须保留外部浏览器兜底。" />
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>
