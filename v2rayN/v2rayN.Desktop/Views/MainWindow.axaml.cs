@@ -44,9 +44,11 @@ namespace v2rayN.Desktop.Views
             btnNavHome.Click += (_, _) => SelectFluxPage(0);
             btnNavNodes.Click += (_, _) => SelectFluxPage(1);
             btnNavSubs.Click += (_, _) => SelectFluxPage(2);
-            btnNavRoutes.Click += (_, _) => SelectFluxPage(3);
-            btnNavSettings.Click += (_, _) => SelectFluxPage(4);
-            btnNavLogs.Click += (_, _) => SelectFluxPage(5);
+            btnNavFreeNodes.Click += (_, _) => SelectFluxPage(3);
+            btnNavRoutes.Click += (_, _) => SelectFluxPage(4);
+            btnNavSettings.Click += (_, _) => SelectFluxPage(5);
+            btnNavLogs.Click += (_, _) => SelectFluxPage(6);
+            btnNavGuide.Click += (_, _) => SelectFluxPage(7);
 
             MessageBus.Current.Listen<string>(EMsgCommand.SendSnackMsg.ToString()).Subscribe(DelegateSnackMsg);
             ViewModel = new MainWindowViewModel(UpdateViewHandler);
@@ -57,6 +59,8 @@ namespace v2rayN.Desktop.Views
             tabClashProxies2.Content ??= new ClashProxiesView();
             tabClashConnections2.Content ??= new ClashConnectionsView();
             conTheme.Content ??= new ThemeSettingView();
+            conFreeNodes.Content ??= new FreeNodesView();
+            conGuide.Content ??= new GuideView();
 
             this.WhenActivated(disposables =>
             {
@@ -335,7 +339,7 @@ namespace v2rayN.Desktop.Views
 
         private void SelectFluxPage(int index)
         {
-            if (index < 0 || index > 5)
+            if (index < 0 || index > 7)
             {
                 index = 0;
             }
@@ -343,16 +347,20 @@ namespace v2rayN.Desktop.Views
             pageHome.IsVisible = index == 0;
             pageNodes.IsVisible = index == 1;
             pageSubscription.IsVisible = index == 2;
-            pageRouting.IsVisible = index == 3;
-            pageSettings.IsVisible = index == 4;
-            pageLogs.IsVisible = index == 5;
+            pageFreeNodes.IsVisible = index == 3;
+            pageRouting.IsVisible = index == 4;
+            pageSettings.IsVisible = index == 5;
+            pageLogs.IsVisible = index == 6;
+            pageGuide.IsVisible = index == 7;
 
             SetNavActive(btnNavHome, index == 0);
             SetNavActive(btnNavNodes, index == 1);
             SetNavActive(btnNavSubs, index == 2);
-            SetNavActive(btnNavRoutes, index == 3);
-            SetNavActive(btnNavSettings, index == 4);
-            SetNavActive(btnNavLogs, index == 5);
+            SetNavActive(btnNavFreeNodes, index == 3);
+            SetNavActive(btnNavRoutes, index == 4);
+            SetNavActive(btnNavSettings, index == 5);
+            SetNavActive(btnNavLogs, index == 6);
+            SetNavActive(btnNavGuide, index == 7);
 
             if (ViewModel != null && ViewModel.TabMainSelectedIndex != index)
             {
