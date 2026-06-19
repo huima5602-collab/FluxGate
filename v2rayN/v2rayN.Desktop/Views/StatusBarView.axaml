@@ -45,7 +45,7 @@
                     <Border Classes="FluxMetricCard Cyan">
                         <StackPanel Spacing="8">
                             <TextBlock Classes="FluxTinyLabel" Text="系统代理" />
-                            <TextBlock Classes="FluxMetricText" Text="{x:Static resx:ResUI.menuSystemproxy}" />
+                            <TextBlock Classes="FluxMetricText" Text="{Binding SystemProxyStatusDisplay}" />
                         </StackPanel>
                     </Border>
 
@@ -54,8 +54,8 @@
                         Margin="12,0,0,0"
                         Classes="FluxMetricCard Orange">
                         <StackPanel Spacing="8">
-                            <TextBlock Classes="FluxTinyLabel" Text="TUN" />
-                            <TextBlock Classes="FluxMetricText" Text="{x:Static resx:ResUI.TbEnableTunAs}" />
+                            <TextBlock Classes="FluxTinyLabel" Text="TUN 模式" />
+                            <TextBlock Classes="FluxMetricText" Text="{Binding TunStatusDisplay}" />
                         </StackPanel>
                     </Border>
 
@@ -64,11 +64,16 @@
                         Margin="12,0,0,0"
                         Classes="FluxMetricCard Green">
                         <StackPanel Spacing="8">
-                            <TextBlock Classes="FluxTinyLabel" Text="监听端口" />
+                            <TextBlock Classes="FluxTinyLabel" Text="本机代理端口" />
                             <TextBlock
                                 x:Name="txtInboundDisplay"
                                 Classes="FluxMetricText"
+                                Text="{Binding LocalProxyAddressDisplay}"
                                 TextWrapping="Wrap" />
+                            <Button
+                                x:Name="btnCopyLocalProxy"
+                                Classes="FluxMiniActionButton"
+                                Content="复制地址" />
                         </StackPanel>
                     </Border>
 
@@ -194,7 +199,7 @@
                         x:Name="btnTestServerAvailability"
                         Grid.Column="1"
                         Classes="FluxMiniActionButton"
-                        Content="点此测速" />
+                        Content="测速" />
                     <TextBlock
                         x:Name="txtInboundLanDisplay"
                         Grid.Row="1"
