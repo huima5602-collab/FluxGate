@@ -33,6 +33,7 @@ namespace ServiceLib.ViewModels
         public ReactiveCommand<Unit, Unit> SubUpdateCmd { get; }
         public ReactiveCommand<Unit, Unit> SubUpdateViaProxyCmd { get; }
         public ReactiveCommand<Unit, Unit> CopyProxyCmdToClipboardCmd { get; }
+        public ReactiveCommand<Unit, Unit> CopyLocalProxyAddressCmd { get; }
         public ReactiveCommand<Unit, Unit> NotifyLeftClickCmd { get; }
 
         #region System Proxy
@@ -74,6 +75,18 @@ namespace ServiceLib.ViewModels
         public string InboundLanDisplay { get; set; }
 
         [Reactive]
+        public string SystemProxyStatusDisplay { get; set; }
+
+        [Reactive]
+        public string TunStatusDisplay { get; set; }
+
+        [Reactive]
+        public string LocalProxyAddressDisplay { get; set; }
+
+        [Reactive]
+        public string LocalProxyAddressCopyText { get; set; }
+
+        [Reactive]
         public string RunningServerDisplay { get; set; }
 
         [Reactive]
@@ -99,6 +112,10 @@ namespace ServiceLib.ViewModels
             SelectedRouting = new();
             SelectedServer = new();
             RunningServerToolTipText = "-";
+            SystemProxyStatusDisplay = "-";
+            TunStatusDisplay = "-";
+            LocalProxyAddressDisplay = "-";
+            LocalProxyAddressCopyText = string.Empty;
             BlSystemProxyPacVisible = Utils.IsWindows();
 
             if (_config.TunModeItem.EnableTun && AllowEnableTun())
@@ -136,6 +153,14 @@ namespace ServiceLib.ViewModels
             CopyProxyCmdToClipboardCmd = ReactiveCommand.CreateFromTask(async () =>
             {
                 await CopyProxyCmdToClipboard();
+            });
+            CopyLocalProxyAddressCmd = ReactiveCommand.CreateFromTask(async () =>
+            {
+                if (LocalProxyAddressCopyText.IsNotEmpty())
+                {
+                    await _updateView?.Invoke(EViewAction.SetClipboardData, LocalProxyAddressCopyText);
+                    NoticeHandler.Instance.SendMessageAndEnqueue(LocalProxyAddressCopyText);
+                }
             });
 
             NotifyLeftClickCmd = ReactiveCommand.CreateFromTask(async () =>
@@ -358,6 +383,7 @@ namespace ServiceLib.ViewModels
             {
                 _updateView?.Invoke(EViewAction.DispatcherRefreshIcon, null);
             }
+            RefreshHomeStatusDisplay();
         }
 
         public async Task RefreshRoutingsMenu()
@@ -441,6 +467,7 @@ namespace ServiceLib.ViewModels
                     }
                 }
                 await ConfigHandler.SaveConfig(_config);
+                RefreshHomeStatusDisplay();
                 Locator.Current.GetService<MainWindowViewModel>()?.Reload();
             }
         }
@@ -466,6 +493,24 @@ namespace ServiceLib.ViewModels
 
         #region UI
 
+        private void RefreshHomeStatusDisplay()
+        {
+            SystemProxyStatusDisplay = _config.SystemProxyItem.SysProxyType switch
+            {
+                ESysProxyType.ForcedClear => ResUI.menuSystemProxyClear,
+                ESysProxyType.ForcedChange => ResUI.menuSystemProxySet,
+                ESysProxyType.Unchanged => ResUI.menuSystemProxyNothing,
+                ESysProxyType.Pac => ResUI.menuSystemProxyPac,
+                _ => _config.SystemProxyItem.SysProxyType.ToString()
+            };
+
+            TunStatusDisplay = EnableTun ? ResUI.TbSettingsTunMode : Global.None;
+
+            var localPort = AppHandler.Instance.GetLocalPort(EInboundProtocol.socks);
+            LocalProxyAddressCopyText = $"{Global.Loopback}:{localPort}";
+            LocalProxyAddressDisplay = $"{EInboundProtocol.mixed}:{LocalProxyAddressCopyText}";
+        }
+
         public async Task InboundDisplayStatus()
         {
             StringBuilder sb = new();
@@ -488,6 +533,7 @@ namespace ServiceLib.ViewModels
             {
                 InboundLanDisplay = $"{ResUI.LabLAN}:{Global.None}";
             }
+            RefreshHomeStatusDisplay();
             await Task.CompletedTask;
         }
 
