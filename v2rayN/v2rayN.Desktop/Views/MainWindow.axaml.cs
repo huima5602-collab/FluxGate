@@ -333,7 +333,7 @@ namespace v2rayN.Desktop.Views
 
         private void BtnFreeNodes_Click(object? sender, RoutedEventArgs e)
         {
-            ProcUtils.ProcessStart("https://lovable.dev/preview/lZwTAW5Wyepb3fplbbhlJLUZpa7z6kCO");
+            ProcUtils.ProcessStart("https://node-nations-feed.lovable.app/");
         }
 
         private void SelectFluxPage(int index)
