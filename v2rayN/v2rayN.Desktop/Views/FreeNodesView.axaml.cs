@@ -7,7 +7,7 @@ namespace v2rayN.Desktop.Views
 {
     public partial class FreeNodesView : UserControl
     {
-        private const string FreeNodesUrl = "https://lovable.dev/preview/lZwTAW5Wyepb3fplbbhlJLUZpa7z6kCO";
+        private const string FreeNodesUrl = "https://node-nations-feed.lovable.app/";
 
         public FreeNodesView()
         {
