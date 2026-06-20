@@ -216,13 +216,12 @@ namespace ServiceLib.ViewModels
             await ConfigHandler.InitBuiltinRouting(_config);
             await ConfigHandler.InitBuiltinDNS(_config);
             await ProfileExHandler.Instance.Init();
+            _config.GuiItem.EnableStatistics = true;
+            _config.GuiItem.DisplayRealTimeSpeed = true;
             await CoreHandler.Instance.Init(_config, UpdateHandler);
             TaskHandler.Instance.RegUpdateTask(_config, UpdateTaskHandler);
 
-            if (_config.GuiItem.EnableStatistics || _config.GuiItem.DisplayRealTimeSpeed)
-            {
-                await StatisticsHandler.Instance.Init(_config, UpdateStatisticsHandler);
-            }
+            await StatisticsHandler.Instance.Init(_config, UpdateStatisticsHandler);
 
             BlReloadEnabled = true;
             await Reload();
@@ -272,10 +271,7 @@ namespace ServiceLib.ViewModels
 
         public void SetStatisticsResult(ServerSpeedItem update)
         {
-            if (_config.GuiItem.DisplayRealTimeSpeed || _config.GuiItem.EnableStatistics)
-            {
-                Locator.Current.GetService<StatusBarViewModel>()?.UpdateStatistics(update);
-            }
+            Locator.Current.GetService<StatusBarViewModel>()?.UpdateStatistics(update);
             if (_config.GuiItem.EnableStatistics && (update.ProxyUp + update.ProxyDown) > 0 && DateTime.Now.Second % 9 == 0)
             {
                 Locator.Current.GetService<ProfilesViewModel>()?.UpdateStatistics(update);
