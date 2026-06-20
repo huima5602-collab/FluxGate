@@ -12,6 +12,7 @@ namespace v2rayN.Desktop.Views
         public FreeNodesView()
         {
             InitializeComponent();
+            btnLoadFreeNodes.Click += LoadFreeNodes_Click;
             btnOpenFreeNodes.Click += OpenFreeNodes_Click;
             btnReloadFreeNodes.Click += ReloadFreeNodes_Click;
             btnCopyFreeNodesUrl.Click += CopyFreeNodesUrl_Click;
@@ -24,12 +25,23 @@ namespace v2rayN.Desktop.Views
 
         private void ReloadFreeNodes_Click(object? sender, RoutedEventArgs e)
         {
-            webFreeNodes.Source = new Uri(FreeNodesUrl);
+            LoadFreeNodes();
         }
 
         private async void CopyFreeNodesUrl_Click(object? sender, RoutedEventArgs e)
         {
             await AvaUtils.SetClipboardData(this, FreeNodesUrl);
+        }
+
+        private void LoadFreeNodes_Click(object? sender, RoutedEventArgs e)
+        {
+            LoadFreeNodes();
+        }
+
+        private void LoadFreeNodes()
+        {
+            webFreeNodesPlaceholder.IsVisible = false;
+            webFreeNodes.Source = new Uri(FreeNodesUrl);
         }
     }
 }
