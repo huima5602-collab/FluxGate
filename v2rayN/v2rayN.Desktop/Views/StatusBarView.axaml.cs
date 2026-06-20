@@ -37,6 +37,8 @@ namespace v2rayN.Desktop.Views
                 this.OneWayBind(ViewModel, vm => vm.RunningInfoDisplay, v => v.txtRunningInfoDisplay.Text).DisposeWith(disposables);
                 this.OneWayBind(ViewModel, vm => vm.SpeedProxyDisplay, v => v.txtSpeedProxyDisplay.Text).DisposeWith(disposables);
                 this.OneWayBind(ViewModel, vm => vm.SpeedDirectDisplay, v => v.txtSpeedDirectDisplay.Text).DisposeWith(disposables);
+                this.OneWayBind(ViewModel, vm => vm.TodayTrafficDisplay, v => v.txtTodayTrafficDisplay.Text).DisposeWith(disposables);
+                this.OneWayBind(ViewModel, vm => vm.TotalTrafficDisplay, v => v.txtTotalTrafficDisplay.Text).DisposeWith(disposables);
                 this.BindCommand(ViewModel, vm => vm.CopyLocalProxyAddressCmd, v => v.btnCopyLocalProxy).DisposeWith(disposables);
                 this.Bind(ViewModel, vm => vm.EnableTun, v => v.togEnableTun.IsChecked).DisposeWith(disposables);
 
