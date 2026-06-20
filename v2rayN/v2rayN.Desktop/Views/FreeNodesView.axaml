@@ -1,26 +1,47 @@
 <UserControl
     x:Class="v2rayN.Desktop.Views.FreeNodesView"
     xmlns="https://github.com/avaloniaui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <Grid RowDefinitions="Auto,*">
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:web="clr-namespace:Avalonia.Controls;assembly=Avalonia.Controls.WebView">
+    <Grid RowDefinitions="Auto,*,Auto">
         <Grid ColumnDefinitions="*,Auto">
             <StackPanel Spacing="8">
                 <TextBlock Classes="FluxPageTitle" Text="免费节点" />
-                <TextBlock Classes="FluxHeroText" Text="这里是免费节点中心。内嵌 WebView 需要单独验证依赖和打包影响；当前先保留可靠的浏览器打开入口。" />
+                <TextBlock Classes="FluxHeroText" Text="内嵌打开免费节点中心。若页面受登录、证书或 WebView2 环境影响无法加载，可以使用右侧浏览器入口。" />
             </StackPanel>
-            <Button
-                x:Name="btnOpenFreeNodes"
+            <StackPanel
                 Grid.Column="1"
-                Classes="FluxToolButton Green"
-                Content="在浏览器打开" />
+                VerticalAlignment="Bottom"
+                Orientation="Horizontal"
+                Spacing="8">
+                <Button
+                    x:Name="btnReloadFreeNodes"
+                    Classes="FluxToolButton Cyan"
+                    Content="刷新" />
+                <Button
+                    x:Name="btnCopyFreeNodesUrl"
+                    Classes="FluxToolButton"
+                    Content="复制链接" />
+                <Button
+                    x:Name="btnOpenFreeNodes"
+                    Classes="FluxToolButton Green"
+                    Content="浏览器打开" />
+            </StackPanel>
         </Grid>
 
-        <Border Grid.Row="1" Margin="0,20,0,0" Classes="FluxPanel FluxNodePanel">
-            <StackPanel Spacing="12">
-                <TextBlock Classes="FluxSectionTitle" Text="WebView 集成待评估" />
-                <TextBlock Classes="FluxHeroText" Text="目标页面：https://lovable.dev/preview/lZwTAW5Wyepb3fplbbhlJLUZpa7z6kCO" />
-                <TextBlock Classes="FluxHeroText" Text="要求：不保存网页 Cookie，不注入脚本，不读取网页数据；加载失败时必须保留外部浏览器兜底。" />
-            </StackPanel>
+        <Border
+            Grid.Row="1"
+            Margin="0,18,0,0"
+            Classes="FluxPanel FluxWebViewPanel">
+            <web:NativeWebView
+                x:Name="webFreeNodes"
+                Source="https://lovable.dev/preview/lZwTAW5Wyepb3fplbbhlJLUZpa7z6kCO" />
         </Border>
+
+        <TextBlock
+            Grid.Row="2"
+            Margin="0,10,0,0"
+            Classes="FluxHeroText"
+            Text="提示：内嵌页面仅用于浏览，不读取网页数据；加载失败时请用浏览器打开。" />
     </Grid>
 </UserControl>
