@@ -66,6 +66,6 @@ The `codex/ui-redesign` branch contains the first FluxGate UI preview. It keeps 
 
 The `v0.2.0-ui-preview.2` preview extends that direction into a 1920-style Minimal Command layout. The main Avalonia shell now presents six left-side pages: home, nodes, subscriptions, routing, settings, and logs. Subscription, routing, settings, and maintenance actions continue to call the existing v2rayN/FluxGate commands and dialogs instead of replacing the underlying business logic.
 
-The top bar includes a `免费节点` entry that opens `https://lovable.dev/preview/lZwTAW5Wyepb3fplbbhlJLUZpa7z6kCO` in the system browser. The page is external and is not embedded in FluxGate.
+The top bar includes a `免费节点` entry that opens `https://node-nations-feed.lovable.app/` in the system browser. The page is external and is not embedded in FluxGate.
 
 When validating the desktop UI, do not run FluxGate at the same time as an existing v2rayN client on the same Windows profile. They can compete for system proxy state, Core ports, and tray behavior; pause v2rayN before a full manual FluxGate run.
