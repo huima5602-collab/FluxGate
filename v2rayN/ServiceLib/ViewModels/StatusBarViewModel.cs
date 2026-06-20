@@ -122,8 +122,8 @@ namespace ServiceLib.ViewModels
             TunStatusDisplay = "-";
             LocalProxyAddressDisplay = "-";
             LocalProxyAddressCopyText = string.Empty;
-            TodayTrafficDisplay = "-";
-            TotalTrafficDisplay = "-";
+            TodayTrafficDisplay = FormatTrafficPair(0, 0);
+            TotalTrafficDisplay = FormatTrafficPair(0, 0);
             BlSystemProxyPacVisible = Utils.IsWindows();
 
             if (_config.TunModeItem.EnableTun && AllowEnableTun())
@@ -225,6 +225,7 @@ namespace ServiceLib.ViewModels
         {
             await RefreshRoutingsMenu();
             await InboundDisplayStatus();
+            RefreshTrafficDisplayFromStatistics();
             await ChangeSystemProxyAsync(_config.SystemProxyItem.SysProxyType, true);
         }
 
@@ -551,12 +552,32 @@ namespace ServiceLib.ViewModels
             {
                 SpeedProxyDisplay = string.Format(ResUI.SpeedDisplayText, Global.ProxyTag, Utils.HumanFy(update.ProxyUp), Utils.HumanFy(update.ProxyDown));
                 SpeedDirectDisplay = string.Format(ResUI.SpeedDisplayText, Global.DirectTag, Utils.HumanFy(update.DirectUp), Utils.HumanFy(update.DirectDown));
-                TodayTrafficDisplay = $"{Utils.HumanFy(update.TodayUp)} / {Utils.HumanFy(update.TodayDown)}";
-                TotalTrafficDisplay = $"{Utils.HumanFy(update.TotalUp)} / {Utils.HumanFy(update.TotalDown)}";
+                TodayTrafficDisplay = FormatTrafficPair(update.TodayUp, update.TodayDown);
+                TotalTrafficDisplay = FormatTrafficPair(update.TotalUp, update.TotalDown);
             }
             catch
             {
             }
+        }
+
+        private void RefreshTrafficDisplayFromStatistics()
+        {
+            try
+            {
+                var stat = StatisticsHandler.Instance.ServerStat?.FirstOrDefault(t => t.IndexId == _config.IndexId);
+                TodayTrafficDisplay = FormatTrafficPair(stat?.TodayUp ?? 0, stat?.TodayDown ?? 0);
+                TotalTrafficDisplay = FormatTrafficPair(stat?.TotalUp ?? 0, stat?.TotalDown ?? 0);
+            }
+            catch
+            {
+                TodayTrafficDisplay = FormatTrafficPair(0, 0);
+                TotalTrafficDisplay = FormatTrafficPair(0, 0);
+            }
+        }
+
+        private static string FormatTrafficPair(long up, long down)
+        {
+            return $"{Utils.HumanFy(up)} / {Utils.HumanFy(down)}";
         }
 
         #endregion UI
