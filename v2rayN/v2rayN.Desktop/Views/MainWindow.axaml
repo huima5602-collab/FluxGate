@@ -54,6 +54,7 @@
                             Content="节点" />
                         <Button
                             x:Name="btnNavSubs"
+                            IsVisible="False"
                             Classes="FluxNavButton"
                             Content="订阅" />
                         <Button
@@ -62,10 +63,12 @@
                             Content="免费" />
                         <Button
                             x:Name="btnNavRoutes"
+                            IsVisible="False"
                             Classes="FluxNavButton"
                             Content="路由" />
                         <Button
                             x:Name="btnNavSettings"
+                            IsVisible="False"
                             Classes="FluxNavButton"
                             Content="设置" />
                         <Button
@@ -112,6 +115,14 @@
                             x:Name="btnTopSubUpdate"
                             Classes="FluxToolButton Cyan"
                             Content="刷新订阅" />
+                        <Button
+                            x:Name="btnTopRoutes"
+                            Classes="FluxToolButton"
+                            Content="路由规则" />
+                        <Button
+                            x:Name="btnTopSettings"
+                            Classes="FluxToolButton Purple"
+                            Content="设置" />
                         <Menu Classes="FluxTopMenu">
                             <MenuItem Header="高级菜单">
                                 <MenuItem Header="{x:Static resx:ResUI.menuServers}">
@@ -209,6 +220,10 @@
                                         x:Name="btnAddVlessPage"
                                         Classes="FluxToolButton Green"
                                         Content="添加节点" />
+                                    <Button
+                                        x:Name="btnNodeSubSettingPage"
+                                        Classes="FluxToolButton"
+                                        Content="添加订阅" />
                                     <Button
                                         x:Name="btnNodeSubUpdatePage"
                                         Classes="FluxToolButton Cyan"
