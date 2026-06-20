@@ -45,7 +45,7 @@ namespace v2rayN.Desktop.Views
             btnTopSettings.Click += (_, _) => SelectFluxPage(4);
             btnNavHome.Click += (_, _) => SelectFluxPage(0);
             btnNavNodes.Click += (_, _) => SelectFluxPage(1);
-            btnNavFreeNodes.Click += (_, _) => SelectFluxPage(2);
+            btnNavFreeNodes.Click += (_, _) => SelectFluxPage(0);
             btnNavLogs.Click += (_, _) => SelectFluxPage(5);
             btnNavGuide.Click += (_, _) => SelectFluxPage(6);
 
@@ -58,7 +58,6 @@ namespace v2rayN.Desktop.Views
             tabClashProxies2.Content ??= new ClashProxiesView();
             tabClashConnections2.Content ??= new ClashConnectionsView();
             conTheme.Content ??= new ThemeSettingView();
-            conFreeNodes.Content ??= new FreeNodesView();
             conGuide.Content ??= new GuideView();
 
             this.WhenActivated(disposables =>
@@ -347,7 +346,7 @@ namespace v2rayN.Desktop.Views
             pageHome.IsVisible = index == 0;
             pageNodes.IsVisible = index == 1;
             pageSubscription.IsVisible = false;
-            pageFreeNodes.IsVisible = index == 2;
+            pageFreeNodes.IsVisible = false;
             pageRouting.IsVisible = index == 3;
             pageSettings.IsVisible = index == 4;
             pageLogs.IsVisible = index == 5;
@@ -356,7 +355,7 @@ namespace v2rayN.Desktop.Views
             SetNavActive(btnNavHome, index == 0);
             SetNavActive(btnNavNodes, index == 1);
             SetNavActive(btnNavSubs, false);
-            SetNavActive(btnNavFreeNodes, index == 2);
+            SetNavActive(btnNavFreeNodes, false);
             SetNavActive(btnNavRoutes, false);
             SetNavActive(btnNavSettings, false);
             SetNavActive(btnNavLogs, index == 5);
