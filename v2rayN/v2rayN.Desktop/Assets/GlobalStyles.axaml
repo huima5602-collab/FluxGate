@@ -129,23 +129,35 @@
     </Style>
 
     <Style Selector="Border.FluxPanel.FluxCommandPanel">
-        <Setter Property="MinHeight" Value="210" />
-        <Setter Property="Padding" Value="24,22" />
+        <Setter Property="MinHeight" Value="170" />
+        <Setter Property="Padding" Value="22,18" />
     </Style>
 
     <Style Selector="Border.FluxPanel.FluxControlCard">
-        <Setter Property="MinHeight" Value="92" />
+        <Setter Property="MinHeight" Value="84" />
         <Setter Property="Padding" Value="16,14" />
     </Style>
 
+    <Style Selector="Border.FluxPanel.FluxControlCard.Compact">
+        <Setter Property="MinHeight" Value="72" />
+        <Setter Property="Padding" Value="14,12" />
+    </Style>
+
     <Style Selector="Border.FluxPanel.FluxTrafficPanel">
-        <Setter Property="MinHeight" Value="150" />
+        <Setter Property="MinHeight" Value="170" />
         <Setter Property="Padding" Value="18,16" />
     </Style>
 
     <Style Selector="Border.FluxPanel.FluxNodePanel">
-        <Setter Property="MinHeight" Value="150" />
+        <Setter Property="MinHeight" Value="170" />
         <Setter Property="Padding" Value="20,16" />
+        <Setter Property="BorderBrush" Value="{DynamicResource FluxPurple}" />
+    </Style>
+
+    <Style Selector="Border.FluxPanel.FluxWebViewPanel">
+        <Setter Property="MinHeight" Value="420" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="ClipToBounds" Value="True" />
         <Setter Property="BorderBrush" Value="{DynamicResource FluxPurple}" />
     </Style>
 
@@ -158,6 +170,13 @@
         <Setter Property="VerticalAlignment" Value="Center" />
     </Style>
 
+    <Style Selector="Border.FluxOnBadge.Compact">
+        <Setter Property="Width" Value="72" />
+        <Setter Property="Height" Value="72" />
+        <Setter Property="CornerRadius" Value="72" />
+        <Setter Property="Margin" Value="20,0,10,0" />
+    </Style>
+
     <Style Selector="Border.FluxMetricCard">
         <Setter Property="MinHeight" Value="58" />
         <Setter Property="Padding" Value="13,10" />
@@ -165,6 +184,11 @@
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="Background" Value="{DynamicResource FluxPanelBgAlt}" />
         <Setter Property="BorderBrush" Value="{DynamicResource FluxBorder}" />
+    </Style>
+
+    <Style Selector="Border.FluxMetricCard.Compact">
+        <Setter Property="MinHeight" Value="54" />
+        <Setter Property="Padding" Value="12,8" />
     </Style>
 
     <Style Selector="Border.FluxMetricCard.Cyan">
@@ -221,6 +245,12 @@
         <Setter Property="Foreground" Value="{DynamicResource FluxText}" />
         <Setter Property="FontSize" Value="12" />
         <Setter Property="VerticalAlignment" Value="Top" />
+    </Style>
+
+    <Style Selector="Button.FluxMiniActionButton.Compact">
+        <Setter Property="MinWidth" Value="54" />
+        <Setter Property="Height" Value="28" />
+        <Setter Property="Padding" Value="10,0" />
     </Style>
 
     <Style Selector="Border.FluxPill">
