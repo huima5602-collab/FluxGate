@@ -102,6 +102,12 @@ namespace ServiceLib.ViewModels
         public string SpeedDirectDisplay { get; set; }
 
         [Reactive]
+        public string TodayTrafficDisplay { get; set; }
+
+        [Reactive]
+        public string TotalTrafficDisplay { get; set; }
+
+        [Reactive]
         public bool EnableTun { get; set; }
 
         #endregion UI
@@ -116,6 +122,8 @@ namespace ServiceLib.ViewModels
             TunStatusDisplay = "-";
             LocalProxyAddressDisplay = "-";
             LocalProxyAddressCopyText = string.Empty;
+            TodayTrafficDisplay = "-";
+            TotalTrafficDisplay = "-";
             BlSystemProxyPacVisible = Utils.IsWindows();
 
             if (_config.TunModeItem.EnableTun && AllowEnableTun())
@@ -543,6 +551,8 @@ namespace ServiceLib.ViewModels
             {
                 SpeedProxyDisplay = string.Format(ResUI.SpeedDisplayText, Global.ProxyTag, Utils.HumanFy(update.ProxyUp), Utils.HumanFy(update.ProxyDown));
                 SpeedDirectDisplay = string.Format(ResUI.SpeedDisplayText, Global.DirectTag, Utils.HumanFy(update.DirectUp), Utils.HumanFy(update.DirectDown));
+                TodayTrafficDisplay = $"{Utils.HumanFy(update.TodayUp)} / {Utils.HumanFy(update.TodayDown)}";
+                TotalTrafficDisplay = $"{Utils.HumanFy(update.TotalUp)} / {Utils.HumanFy(update.TotalDown)}";
             }
             catch
             {
