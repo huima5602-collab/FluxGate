@@ -311,6 +311,29 @@
         <Setter Property="Foreground" Value="{DynamicResource FluxText}" />
     </Style>
 
+    <Style Selector="ContextMenu">
+        <Setter Property="Background" Value="{DynamicResource FluxPanelBgAlt}" />
+        <Setter Property="Foreground" Value="{DynamicResource FluxText}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource FluxBorder}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Padding" Value="6" />
+    </Style>
+
+    <Style Selector="ContextMenu MenuItem">
+        <Setter Property="Foreground" Value="{DynamicResource FluxText}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="MinHeight" Value="28" />
+        <Setter Property="Padding" Value="12,6" />
+    </Style>
+
+    <Style Selector="ContextMenu MenuItem:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="#243653" />
+    </Style>
+
+    <Style Selector="ContextMenu MenuItem:selected /template/ ContentPresenter">
+        <Setter Property="Background" Value="#2B4265" />
+    </Style>
+
     <Style Selector="Menu.FluxTopMenu">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Foreground" Value="{DynamicResource FluxText}" />
