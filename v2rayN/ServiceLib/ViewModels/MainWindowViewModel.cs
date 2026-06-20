@@ -272,7 +272,7 @@ namespace ServiceLib.ViewModels
 
         public void SetStatisticsResult(ServerSpeedItem update)
         {
-            if (_config.GuiItem.DisplayRealTimeSpeed)
+            if (_config.GuiItem.DisplayRealTimeSpeed || _config.GuiItem.EnableStatistics)
             {
                 Locator.Current.GetService<StatusBarViewModel>()?.UpdateStatistics(update);
             }
