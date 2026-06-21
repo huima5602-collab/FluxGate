@@ -110,6 +110,12 @@ namespace ServiceLib.ViewModels
         [Reactive]
         public bool EnableTun { get; set; }
 
+        [Reactive]
+        public bool IsProxyEngaged { get; set; }
+
+        [Reactive]
+        public bool IsProxyIdle { get; set; }
+
         #endregion UI
 
         public StatusBarViewModel(Func<EViewAction, object?, Task<bool>>? updateView)
@@ -518,6 +524,11 @@ namespace ServiceLib.ViewModels
             var localPort = AppHandler.Instance.GetLocalPort(EInboundProtocol.socks);
             LocalProxyAddressCopyText = $"{Global.Loopback}:{localPort}";
             LocalProxyAddressDisplay = $"{EInboundProtocol.mixed}:{LocalProxyAddressCopyText}";
+
+            IsProxyEngaged = EnableTun
+                || _config.SystemProxyItem.SysProxyType == ESysProxyType.ForcedChange
+                || _config.SystemProxyItem.SysProxyType == ESysProxyType.Pac;
+            IsProxyIdle = !IsProxyEngaged;
         }
 
         public async Task InboundDisplayStatus()
