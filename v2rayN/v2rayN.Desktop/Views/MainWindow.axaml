@@ -179,7 +179,6 @@
                         </Menu>
                         <Button
                             x:Name="btnFreeNodes"
-                            IsVisible="False"
                             Classes="FluxToolButton Green"
                             Content="免费节点" />
                         <Button
