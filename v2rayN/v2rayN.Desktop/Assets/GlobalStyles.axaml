@@ -177,6 +177,12 @@
         <Setter Property="Margin" Value="20,0,10,0" />
     </Style>
 
+    <Style Selector="Border.FluxOnBadge.Off">
+        <Setter Property="Background" Value="{DynamicResource FluxPanelBgAlt}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource FluxDanger}" />
+        <Setter Property="BorderThickness" Value="1" />
+    </Style>
+
     <Style Selector="Border.FluxMetricCard">
         <Setter Property="MinHeight" Value="58" />
         <Setter Property="Padding" Value="13,10" />
@@ -311,12 +317,43 @@
         <Setter Property="Foreground" Value="{DynamicResource FluxText}" />
     </Style>
 
+    <Style Selector="FlyoutPresenter">
+        <Setter Property="Background" Value="{DynamicResource FluxPanelBg}" />
+        <Setter Property="Foreground" Value="{DynamicResource FluxText}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource FluxBorder}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="6" />
+        <Setter Property="Padding" Value="10" />
+    </Style>
+
+    <Style Selector="MenuFlyoutPresenter">
+        <Setter Property="Background" Value="{DynamicResource FluxPanelBg}" />
+        <Setter Property="Foreground" Value="{DynamicResource FluxText}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource FluxBorder}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="6" />
+        <Setter Property="Padding" Value="6" />
+    </Style>
+
     <Style Selector="ContextMenu">
-        <Setter Property="Background" Value="{DynamicResource FluxPanelBgAlt}" />
+        <Setter Property="Background" Value="{DynamicResource FluxPanelBg}" />
         <Setter Property="Foreground" Value="{DynamicResource FluxText}" />
         <Setter Property="BorderBrush" Value="{DynamicResource FluxBorder}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="Padding" Value="6" />
+    </Style>
+
+    <Style Selector="MenuItem">
+        <Setter Property="Foreground" Value="{DynamicResource FluxText}" />
+        <Setter Property="Background" Value="Transparent" />
+    </Style>
+
+    <Style Selector="MenuItem:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="#1E3352" />
+    </Style>
+
+    <Style Selector="MenuItem:selected /template/ ContentPresenter">
+        <Setter Property="Background" Value="#253C61" />
     </Style>
 
     <Style Selector="ContextMenu MenuItem">
@@ -332,6 +369,49 @@
 
     <Style Selector="ContextMenu MenuItem:selected /template/ ContentPresenter">
         <Setter Property="Background" Value="#2B4265" />
+    </Style>
+
+    <Style Selector="TextBox">
+        <Setter Property="Background" Value="{DynamicResource FluxPanelBgAlt}" />
+        <Setter Property="Foreground" Value="{DynamicResource FluxText}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource FluxBorder}" />
+        <Setter Property="SelectionBrush" Value="{DynamicResource FluxBlue}" />
+    </Style>
+
+    <Style Selector="TextBox:focus">
+        <Setter Property="BorderBrush" Value="{DynamicResource FluxCyan}" />
+    </Style>
+
+    <Style Selector="TextBox.FluxLogTextArea">
+        <Setter Property="Background" Value="{DynamicResource FluxPanelBg}" />
+        <Setter Property="Foreground" Value="{DynamicResource FluxText}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource FluxBorder}" />
+        <Setter Property="FontFamily" Value="Consolas, Cascadia Mono, Microsoft YaHei UI" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="Padding" Value="14" />
+    </Style>
+
+    <Style Selector="ComboBox">
+        <Setter Property="Background" Value="{DynamicResource FluxPanelBgAlt}" />
+        <Setter Property="Foreground" Value="{DynamicResource FluxText}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource FluxBorder}" />
+    </Style>
+
+    <Style Selector="ComboBox:pointerover /template/ Border#Background">
+        <Setter Property="Background" Value="#1E3352" />
+    </Style>
+
+    <Style Selector="ComboBox:focus /template/ Border#Background">
+        <Setter Property="BorderBrush" Value="{DynamicResource FluxCyan}" />
+    </Style>
+
+    <Style Selector="ComboBoxItem">
+        <Setter Property="Background" Value="{DynamicResource FluxPanelBg}" />
+        <Setter Property="Foreground" Value="{DynamicResource FluxText}" />
+    </Style>
+
+    <Style Selector="ComboBoxItem:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="#1E3352" />
     </Style>
 
     <Style Selector="Menu.FluxTopMenu">
