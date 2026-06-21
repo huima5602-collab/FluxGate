@@ -26,7 +26,10 @@
                         TextWrapping="Wrap" />
                 </StackPanel>
 
-                <Border Grid.Column="1" Classes="FluxOnBadge Compact">
+                <Border
+                    Grid.Column="1"
+                    Classes="FluxOnBadge Compact"
+                    IsVisible="{Binding IsProxyEngaged}">
                     <TextBlock
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
@@ -34,6 +37,18 @@
                         FontWeight="Bold"
                         Foreground="#03120C"
                         Text="ON" />
+                </Border>
+                <Border
+                    Grid.Column="1"
+                    Classes="FluxOnBadge Compact Off"
+                    IsVisible="{Binding IsProxyIdle}">
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        FontSize="15"
+                        FontWeight="Bold"
+                        Foreground="{DynamicResource FluxText}"
+                        Text="OFF" />
                 </Border>
 
                 <Grid
