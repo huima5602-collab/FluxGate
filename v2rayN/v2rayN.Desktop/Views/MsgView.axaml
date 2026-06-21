@@ -61,7 +61,7 @@
             Name="txtMsg"
             VerticalAlignment="Stretch"
             BorderThickness="0"
-            Classes="TextArea"
+            Classes="TextArea FluxLogTextArea"
             IsReadOnly="True"
             TextAlignment="Left"
             TextWrapping="Wrap">
